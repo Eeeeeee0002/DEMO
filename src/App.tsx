@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CartProvider } from './context/CartContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { CategoryStrip } from './components/CategoryStrip';
 import { Marquee } from './components/Marquee';
 import { Catalog } from './components/Catalog';
 import { Story } from './components/Story';
@@ -17,6 +18,7 @@ function App() {
       <Header onOpenCart={() => setCartOpen(true)} />
       <main>
         <Hero />
+        <CategoryStrip />
         <Marquee />
         <Catalog />
         <Story />

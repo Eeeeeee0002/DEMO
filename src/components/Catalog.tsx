@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { categories, products } from '../data/products';
 import type { Category } from '../types';
 import { ProductCard } from './ProductCard';
@@ -6,9 +6,38 @@ import './Catalog.css';
 
 type Filter = Category | 'all';
 
+const validFilters: Filter[] = [
+  'all',
+  'bread',
+  'meat',
+  'cheese',
+  'sweets',
+  'drinks',
+  'wine',
+  'preserves',
+  'spices',
+];
+
+function filterFromHash(hash: string): Filter | null {
+  const match = hash.match(/^#cat-(.+)$/);
+  if (!match) return null;
+  const candidate = match[1] as Filter;
+  return validFilters.includes(candidate) ? candidate : null;
+}
+
 export function Catalog() {
   const [filter, setFilter] = useState<Filter>('all');
   const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    const apply = () => {
+      const fromHash = filterFromHash(window.location.hash);
+      if (fromHash) setFilter(fromHash);
+    };
+    apply();
+    window.addEventListener('hashchange', apply);
+    return () => window.removeEventListener('hashchange', apply);
+  }, []);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
