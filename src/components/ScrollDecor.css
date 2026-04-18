@@ -1,167 +1,158 @@
-/* Parallax decoration layer */
+/* Parallax декор — только для desktop, на мобильных часть шагов отключена */
 .scroll-decor {
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
 }
-
 .sd-shape {
   position: absolute;
-  will-change: transform;
-  filter: blur(0.2px);
+  display: block;
+  transform-origin: center;
   transition: opacity 0.4s ease;
 }
 .sd-shape--pom { width: 520px; height: 520px; max-width: 60vw; opacity: 0.85; }
 .sd-shape--tree { width: 440px; height: 540px; max-width: 58vw; opacity: 0.9; }
-.sd-shape--tandir {
-  width: 480px;
-  height: 620px;
-  max-width: 52vw;
-  opacity: 0.85;
+
+/* Накрытый стол (вино, бокал, лаваш, сыр, кружка) */
+.sd-shape--table {
+  width: 520px;
+  height: 460px;
+  max-width: 56vw;
+  opacity: 0.9;
   mix-blend-mode: multiply;
 }
 
-/* Пламя — мерцает по очереди */
-.sd-shape--tandir .td-flame {
-  transform-origin: 50% 100%;
-  animation: td-flame-flicker 1.6s ease-in-out infinite;
+/* Пар от кружки — поднимается и рассеивается по очереди */
+.sd-shape--table .tb-steam path {
+  stroke-dasharray: 6 10;
+  opacity: 0;
+  animation: tb-steam-rise 5.4s ease-out infinite;
 }
-.sd-shape--tandir .td-flame-1 { animation-delay: 0s;   animation-duration: 1.4s; }
-.sd-shape--tandir .td-flame-2 { animation-delay: 0.3s; animation-duration: 1.8s; }
-.sd-shape--tandir .td-flame-3 { animation-delay: 0.7s; animation-duration: 1.5s; }
+.sd-shape--table .tb-steam-1 { animation-delay: 0s; }
+.sd-shape--table .tb-steam-2 { animation-delay: 1.5s; }
+.sd-shape--table .tb-steam-3 { animation-delay: 3s; }
 
-@keyframes td-flame-flicker {
-  0%, 100% { transform: scaleY(0.88) scaleX(1); opacity: 0.75; }
-  25%      { transform: scaleY(1.08) scaleX(0.94); opacity: 0.95; }
-  55%      { transform: scaleY(0.95) scaleX(1.04); opacity: 0.82; }
-  80%      { transform: scaleY(1.02) scaleX(0.98); opacity: 0.9; }
+@keyframes tb-steam-rise {
+  0%   { opacity: 0; transform: translateY(14px); }
+  20%  { opacity: 0.7; }
+  70%  { opacity: 0.35; }
+  100% { opacity: 0; transform: translateY(-34px); }
 }
 
-/* Halo у горла — дышит в ритме пламени */
-.sd-shape--tandir .td-halo,
-.sd-shape--tandir .td-mouth-glow {
-  transform-origin: 50% 50%;
-  animation: td-halo-pulse 3.2s ease-in-out infinite;
+/* Тёплое окружение — мягко пульсирует */
+.sd-shape--table .tb-ambient {
+  transform-origin: 50% 55%;
+  animation: tb-ambient-pulse 4.8s ease-in-out infinite;
 }
-@keyframes td-halo-pulse {
+@keyframes tb-ambient-pulse {
   0%, 100% { opacity: 0.85; transform: scale(1); }
   50%      { opacity: 1;    transform: scale(1.04); }
 }
 
-/* Дымки — медленно поднимаются и рассеиваются */
-.sd-shape--tandir .td-smoke path {
-  stroke-dasharray: 6 8;
-  animation: td-smoke-rise 5.4s ease-out infinite;
-  opacity: 0;
+/* Блик по стеклу бутылки ползёт вверх-вниз */
+.sd-shape--table .tb-shine {
+  animation: tb-shine-slide 6s ease-in-out infinite;
 }
-.sd-shape--tandir .td-smoke-1 { animation-delay: 0s; }
-.sd-shape--tandir .td-smoke-2 { animation-delay: 1.4s; }
-.sd-shape--tandir .td-smoke-3 { animation-delay: 3s; }
-
-@keyframes td-smoke-rise {
-  0%   { opacity: 0; transform: translateY(10px); }
-  20%  { opacity: 0.6; }
-  70%  { opacity: 0.25; }
-  100% { opacity: 0; transform: translateY(-40px); }
+@keyframes tb-shine-slide {
+  0%, 100% { transform: translateX(0); opacity: 0.2; }
+  50%      { transform: translateX(16px); opacity: 0.5; }
 }
 
-/* Лаваши — по очереди «надуваются» и зарумяниваются */
-.sd-shape--tandir .td-lavash {
-  transform-origin: center;
-  animation: td-lavash-bake 6s ease-in-out infinite;
+/* Вино в бокале — медленно качается */
+.sd-shape--table .tb-wine {
+  transform-origin: 150px 240px;
+  animation: tb-wine-swirl 5.6s ease-in-out infinite;
 }
-.sd-shape--tandir .td-lavash-1 { animation-delay: 0s; }
-.sd-shape--tandir .td-lavash-2 { animation-delay: 2s; }
-.sd-shape--tandir .td-lavash-3 { animation-delay: 4s; }
-
-@keyframes td-lavash-bake {
-  0%, 100% { transform: scale(0.94);  filter: saturate(0.7) brightness(1.05); }
-  35%      { transform: scale(1.06);  filter: saturate(1.1) brightness(0.95); }
-  70%      { transform: scale(1.02);  filter: saturate(1.25) brightness(0.85); }
+@keyframes tb-wine-swirl {
+  0%, 100% { transform: rotate(-1deg); }
+  50%      { transform: rotate(1.5deg); }
 }
 
-/* Лопатка слегка покачивается, как будто баня в работе */
-.sd-shape--tandir .td-paddle {
-  transform-origin: 180px 108px;
-  animation: td-paddle-sway 4.8s ease-in-out infinite;
+/* Лаваш — чуть «дышит», как будто тёплый */
+.sd-shape--table .tb-lavash {
+  transform-origin: 160px 250px;
+  animation: tb-lavash-warm 4.4s ease-in-out infinite;
 }
-@keyframes td-paddle-sway {
-  0%, 100% { transform: rotate(-2deg); }
-  50%      { transform: rotate(3deg); }
+@keyframes tb-lavash-warm {
+  0%, 100% { transform: scale(1);      filter: saturate(1); }
+  50%      { transform: scale(1.025);  filter: saturate(1.1) brightness(1.03); }
+}
+
+/* Сыр — лёгкое покачивание */
+.sd-shape--table .tb-cheese {
+  transform-origin: 276px 298px;
+  animation: tb-cheese-rock 6.2s ease-in-out infinite;
+}
+@keyframes tb-cheese-rock {
+  0%, 100% { transform: rotate(-0.8deg); }
+  50%      { transform: rotate(0.8deg); }
+}
+
+/* Кружка — чуть-чуть «парит» */
+.sd-shape--table .tb-mug {
+  transform-origin: 350px 314px;
+  animation: tb-mug-breathe 5.2s ease-in-out infinite;
+}
+@keyframes tb-mug-breathe {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-1.5px); }
+}
+
+/* Пламя свечи — трепещет */
+.sd-shape--table .tb-flame-sm {
+  transform-origin: 210px 304px;
+  animation: tb-flame-sm-flicker 1.6s ease-in-out infinite;
+}
+@keyframes tb-flame-sm-flicker {
+  0%, 100% { transform: scaleY(0.9)  rotate(-2deg); opacity: 0.85; }
+  50%      { transform: scaleY(1.1)  rotate(2deg);  opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sd-shape--tandir .td-flame,
-  .sd-shape--tandir .td-halo,
-  .sd-shape--tandir .td-mouth-glow,
-  .sd-shape--tandir .td-smoke path,
-  .sd-shape--tandir .td-lavash,
-  .sd-shape--tandir .td-paddle {
+  .sd-shape--table .tb-steam path,
+  .sd-shape--table .tb-ambient,
+  .sd-shape--table .tb-shine,
+  .sd-shape--table .tb-wine,
+  .sd-shape--table .tb-lavash,
+  .sd-shape--table .tb-cheese,
+  .sd-shape--table .tb-mug,
+  .sd-shape--table .tb-flame-sm {
     animation: none;
   }
 }
+
 .sd-shape--khach { width: 240px; height: 320px; opacity: 0.9; }
 .sd-shape--wheat { width: 70px; height: 180px; opacity: 0.85; }
 .sd-shape--vine { width: 260px; height: 120px; opacity: 0.95; }
 .sd-shape--ararat { width: 100%; height: 240px; opacity: 1; }
 
-/* Floating pomegranates travelling across the viewport */
-.sd-floaters { position: absolute; inset: 0; }
 .sd-floater {
   position: absolute;
-  width: 18px;
-  height: 22px;
-  background:
-    radial-gradient(circle at 30% 30%, #c83656 0%, #5a0f24 70%, #2c060f 100%);
-  border-radius: 50% 50% 48% 48% / 55% 55% 45% 45%;
-  box-shadow:
-    0 4px 12px rgba(95, 17, 36, 0.35),
-    inset 0 1px 2px rgba(255, 220, 200, 0.4);
-  opacity: 0.55;
+  width: 10px; height: 14px;
+  background: radial-gradient(circle at 35% 30%, #c1355c 0%, #5a0f1e 70%);
+  border-radius: 55% 45% 55% 45%;
+  opacity: 0.6;
+  filter: drop-shadow(0 2px 6px rgba(100, 20, 30, 0.4));
+  transition: opacity 0.3s ease;
 }
+
 .sd-floater::before {
   content: '';
   position: absolute;
-  top: -4px; left: 50%;
+  top: -3px; left: 50%;
+  width: 3px; height: 3px;
+  background: #f2c26a;
+  border-radius: 50%;
   transform: translateX(-50%);
-  width: 6px; height: 5px;
-  background: linear-gradient(180deg, #e7c572, #6d4f15);
-  clip-path: polygon(10% 100%, 0 20%, 35% 80%, 50% 0%, 65% 80%, 100% 20%, 90% 100%);
+  box-shadow: inset 0 -1px 1px rgba(0,0,0,0.3);
 }
-.sd-floater--1 {
-  left: 8%;  bottom: -30px;
-  animation: sdRise 18s linear infinite;
-}
-.sd-floater--2 {
-  left: 52%; bottom: -30px;
-  animation: sdRise 24s linear infinite;
-  animation-delay: -6s;
-  transform: scale(0.85);
-}
-.sd-floater--3 {
-  left: 82%; bottom: -30px;
-  animation: sdRise 30s linear infinite;
-  animation-delay: -14s;
-  transform: scale(0.7);
-}
-
-@keyframes sdRise {
-  0%   { transform: translate(0, 0)    rotate(0deg);   opacity: 0; }
-  8%   { opacity: 0.55; }
-  50%  { transform: translate(40px, -60vh) rotate(60deg); }
-  92%  { opacity: 0.55; }
-  100% { transform: translate(-10px, -120vh) rotate(180deg); opacity: 0; }
-}
-
-/* Make sure the main content sits above the decor layer */
-body > #root { position: relative; z-index: 1; }
 
 @media (max-width: 760px) {
   .sd-shape--pom { width: 380px; height: 380px; }
   .sd-shape--tree { width: 240px; height: 340px; opacity: 0.75; }
-  .sd-shape--tandir { width: 280px; height: 380px; opacity: 0.7; }
+  .sd-shape--table { width: 320px; height: 280px; opacity: 0.72; }
   .sd-shape--khach { display: none; }
   .sd-shape--wheat { width: 52px; height: 140px; top: 26%; right: 1%; }
   .sd-shape--vine { width: 180px; height: 90px; }
@@ -169,5 +160,7 @@ body > #root { position: relative; z-index: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sd-floater { animation: none; opacity: 0.2; }
+  .sd-shape, .sd-floater {
+    transform: none !important;
+  }
 }

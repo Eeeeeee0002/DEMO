@@ -51,12 +51,222 @@ export function ScrollDecor() {
 
   return (
     <div className="scroll-decor" ref={layerRef} aria-hidden>
-      {/* Тандыр с лавашем — анимированный силуэт в тоне сайта */}
+      {/* Армянский стол — бутылка вина, бокал, лаваш, сыр, кружка. Анимированный силуэт в тоне сайта */}
       <svg
-        className="sd-shape sd-shape--tandir"
+        className="sd-shape sd-shape--table"
         data-parallax="0.12"
-        viewBox="0 0 360 460"
-        style={{ top: '2%', right: '-4%' }}
+        viewBox="0 0 420 380"
+        style={{ top: '6%', right: '-6%' }}
+      >
+        <defs>
+          <linearGradient id="tb-wood" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="rgba(95, 55, 28, 0.35)" />
+            <stop offset="100%" stopColor="rgba(58, 28, 10, 0.55)" />
+          </linearGradient>
+          <linearGradient id="tb-wine-glass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(180, 30, 50, 0.75)" />
+            <stop offset="100%" stopColor="rgba(95, 14, 28, 0.9)" />
+          </linearGradient>
+          <linearGradient id="tb-bottle" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(42, 6, 16, 0.85)" />
+            <stop offset="100%" stopColor="rgba(20, 2, 8, 0.95)" />
+          </linearGradient>
+          <linearGradient id="tb-label" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(240, 220, 170, 0.92)" />
+            <stop offset="100%" stopColor="rgba(200, 170, 110, 0.9)" />
+          </linearGradient>
+          <linearGradient id="tb-lavash" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(235, 200, 140, 0.92)" />
+            <stop offset="100%" stopColor="rgba(180, 125, 65, 0.92)" />
+          </linearGradient>
+          <linearGradient id="tb-cheese" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(245, 210, 120, 0.95)" />
+            <stop offset="100%" stopColor="rgba(205, 160, 70, 0.95)" />
+          </linearGradient>
+          <linearGradient id="tb-mug" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(225, 215, 190, 0.85)" />
+            <stop offset="100%" stopColor="rgba(155, 135, 100, 0.9)" />
+          </linearGradient>
+          <radialGradient id="tb-ambient" cx="50%" cy="55%" r="60%">
+            <stop offset="0%" stopColor="rgba(240, 186, 95, 0.22)" />
+            <stop offset="100%" stopColor="rgba(240, 186, 95, 0)" />
+          </radialGradient>
+        </defs>
+
+        {/* Тёплая окружающая подсветка */}
+        <ellipse cx="210" cy="230" rx="200" ry="110" fill="url(#tb-ambient)" className="tb-ambient" />
+
+        {/* Стол — деревянная столешница */}
+        <g>
+          <path
+            d="M20 310 L400 310 L380 340 L40 340 Z"
+            fill="url(#tb-wood)"
+          />
+          {/* Доски */}
+          <g stroke="rgba(40, 20, 8, 0.28)" strokeWidth="0.8" fill="none">
+            <path d="M110 310 L114 340" />
+            <path d="M200 310 L202 340" />
+            <path d="M290 310 L292 340" />
+          </g>
+          {/* Глубокая тень под столом */}
+          <ellipse cx="210" cy="348" rx="190" ry="10" fill="rgba(30, 10, 6, 0.32)" />
+        </g>
+
+        {/* Лаваш — свёрнутый треугольником слева по центру */}
+        <g className="tb-lavash">
+          <path
+            d="M156 294
+               Q 120 280, 110 240
+               Q 108 218, 134 212
+               Q 170 208, 204 232
+               Q 226 252, 214 286
+               Q 194 304, 156 294 Z"
+            fill="url(#tb-lavash)" />
+          {/* Складки */}
+          <g stroke="rgba(120, 70, 30, 0.4)" strokeWidth="0.8" fill="none" strokeLinecap="round">
+            <path d="M130 240 Q 150 248, 174 248" />
+            <path d="M128 262 Q 158 268, 190 264" />
+            <path d="M140 282 Q 170 288, 198 280" />
+          </g>
+          {/* Крошки */}
+          <g fill="rgba(120, 70, 30, 0.5)">
+            <circle cx="220" cy="292" r="1.2" />
+            <circle cx="230" cy="296" r="0.9" />
+            <circle cx="102" cy="298" r="1.1" />
+          </g>
+        </g>
+
+        {/* Клин сыра — справа по центру */}
+        <g className="tb-cheese">
+          <path
+            d="M236 298 L316 298 L276 236 Z"
+            fill="url(#tb-cheese)" />
+          {/* Боковой срез */}
+          <path
+            d="M236 298 L276 236 L282 228 L242 290 Z"
+            fill="rgba(170, 130, 50, 0.9)" />
+          {/* Дырочки */}
+          <g fill="rgba(120, 80, 30, 0.55)">
+            <circle cx="272" cy="278" r="3.2" />
+            <circle cx="286" cy="268" r="2.4" />
+            <circle cx="260" cy="288" r="2" />
+            <circle cx="298" cy="288" r="2.8" />
+          </g>
+        </g>
+
+        {/* Бутылка вина — слева */}
+        <g className="tb-bottle">
+          {/* Тень на столе под бутылкой */}
+          <ellipse cx="80" cy="308" rx="34" ry="5" fill="rgba(30, 10, 6, 0.38)" />
+          {/* Тело бутылки */}
+          <path
+            d="M64 306
+               L64 140
+               Q 64 120, 74 110
+               L 74 70
+               Q 74 60, 78 60
+               L 82 60
+               Q 86 60, 86 70
+               L 86 110
+               Q 96 120, 96 140
+               L 96 306 Z"
+            fill="url(#tb-bottle)" />
+          {/* Пробка/горлышко */}
+          <rect x="73" y="54" width="14" height="10" fill="rgba(120, 80, 40, 0.9)" rx="1" />
+          {/* Этикетка */}
+          <rect x="62" y="196" width="36" height="76" fill="url(#tb-label)" />
+          <g stroke="rgba(95, 17, 36, 0.85)" strokeWidth="0.8" fill="none">
+            <line x1="66" y1="210" x2="94" y2="210" />
+            <line x1="66" y1="260" x2="94" y2="260" />
+          </g>
+          {/* Армянская подпись на этикетке */}
+          <text x="80" y="232" textAnchor="middle" fontSize="9"
+                fill="rgba(95, 17, 36, 0.9)" fontFamily="serif" fontWeight="700">ԱՐԱՐԱՏ</text>
+          <text x="80" y="247" textAnchor="middle" fontSize="5"
+                fill="rgba(95, 17, 36, 0.75)" fontFamily="serif" letterSpacing="1">ARMENIA</text>
+          {/* Блик — движется по стеклу */}
+          <rect className="tb-shine" x="70" y="90" width="2.5" height="210"
+                fill="rgba(255, 240, 210, 0.35)" />
+        </g>
+
+        {/* Бокал с вином — рядом с бутылкой */}
+        <g className="tb-glass">
+          {/* Тень */}
+          <ellipse cx="150" cy="310" rx="28" ry="4" fill="rgba(30, 10, 6, 0.32)" />
+          {/* Ножка и основание */}
+          <rect x="148" y="270" width="4" height="30" fill="rgba(195, 175, 130, 0.55)" />
+          <ellipse cx="150" cy="304" rx="22" ry="3" fill="rgba(195, 175, 130, 0.7)" />
+          {/* Чаша бокала — прозрачная */}
+          <path
+            d="M122 180
+               Q 122 254, 150 270
+               Q 178 254, 178 180 Z"
+            fill="rgba(250, 244, 228, 0.18)"
+            stroke="rgba(195, 175, 130, 0.6)"
+            strokeWidth="0.8" />
+          {/* Вино внутри — колышется */}
+          <path className="tb-wine"
+            d="M125 210
+               Q 150 216, 175 210
+               Q 178 254, 150 268
+               Q 122 254, 125 210 Z"
+            fill="url(#tb-wine-glass)" />
+          {/* Блик на чаше */}
+          <path d="M134 200 Q 138 236, 146 258"
+                stroke="rgba(255, 245, 220, 0.35)" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+        </g>
+
+        {/* Кружка — справа с паром */}
+        <g className="tb-mug">
+          {/* Тень */}
+          <ellipse cx="350" cy="310" rx="30" ry="4" fill="rgba(30, 10, 6, 0.32)" />
+          {/* Ручка */}
+          <path d="M378 260 Q 402 260, 402 282 Q 402 300, 378 300"
+                stroke="rgba(155, 135, 100, 0.9)" strokeWidth="6" fill="none" strokeLinecap="round" />
+          {/* Корпус кружки */}
+          <path
+            d="M318 252
+               L318 304
+               Q 318 314, 328 314
+               L 372 314
+               Q 382 314, 382 304
+               L 382 252 Z"
+            fill="url(#tb-mug)" />
+          {/* Край */}
+          <ellipse cx="350" cy="252" rx="32" ry="6" fill="rgba(195, 175, 130, 0.75)" />
+          {/* Внутренняя тень (жидкость тёмная сверху) */}
+          <ellipse cx="350" cy="254" rx="28" ry="4.5" fill="rgba(65, 35, 15, 0.6)" />
+          {/* Армянский орнамент полосой */}
+          <g stroke="rgba(95, 17, 36, 0.85)" strokeWidth="0.8" fill="none">
+            <path d="M322 274 Q 330 270, 338 274 Q 346 278, 354 274 Q 362 270, 370 274 Q 378 278, 378 274" />
+            <line x1="322" y1="284" x2="378" y2="284" />
+          </g>
+        </g>
+
+        {/* Пар от кружки */}
+        <g className="tb-steam">
+          <path className="tb-steam-1"
+            d="M338 244 C 336 228, 344 222, 342 202 C 340 184, 346 174, 344 154"
+            stroke="rgba(95, 17, 36, 0.22)" strokeWidth="5" fill="none" strokeLinecap="round" />
+          <path className="tb-steam-2"
+            d="M352 244 C 356 228, 348 222, 354 202 C 358 184, 350 174, 354 154"
+            stroke="rgba(95, 17, 36, 0.18)" strokeWidth="4.5" fill="none" strokeLinecap="round" />
+          <path className="tb-steam-3"
+            d="M366 244 C 364 228, 370 222, 366 202 C 364 184, 370 174, 368 162"
+            stroke="rgba(95, 17, 36, 0.14)" strokeWidth="4" fill="none" strokeLinecap="round" />
+        </g>
+
+        {/* Свечка-акцент по центру стола (не обязательна, но тёплая точка) */}
+        <g className="tb-candle">
+          <rect x="206" y="304" width="8" height="10" fill="rgba(200, 170, 110, 0.85)" />
+          <path d="M210 304 C 208 300, 212 298, 210 294 C 209 292, 211 290, 210 288"
+                stroke="rgba(240, 186, 95, 0.95)" strokeWidth="2.2" fill="none" strokeLinecap="round"
+                className="tb-flame-sm" />
+        </g>
+      </svg>
+      <svg
+        className="sd-shape sd-shape--tandir-old"
+        style={{ display: 'none' }}
       >
         <defs>
           <linearGradient id="td-body" x1="0" y1="0" x2="0" y2="1">
