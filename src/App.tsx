@@ -3,12 +3,11 @@ import { CartProvider } from './context/CartContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { CategoryStrip } from './components/CategoryStrip';
-import { Marquee } from './components/Marquee';
 import { Catalog } from './components/Catalog';
-import { Story } from './components/Story';
 import { Delivery } from './components/Delivery';
 import { Cart } from './components/Cart';
 import { Footer } from './components/Footer';
+import { StickyCartBar } from './components/StickyCartBar';
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -19,12 +18,11 @@ function App() {
       <main>
         <Hero />
         <CategoryStrip />
-        <Marquee />
         <Catalog />
-        <Story />
         <Delivery />
       </main>
       <Footer />
+      <StickyCartBar onOpen={() => setCartOpen(true)} />
       <Cart open={cartOpen} onClose={() => setCartOpen(false)} />
     </CartProvider>
   );

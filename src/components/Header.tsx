@@ -21,7 +21,6 @@ export function Header({ onOpenCart }: HeaderProps) {
 
   const nav = [
     { href: '#catalog', label: 'Каталог' },
-    { href: '#story', label: 'О нас' },
     { href: '#delivery', label: 'Доставка' },
     { href: '#contacts', label: 'Контакты' },
   ];

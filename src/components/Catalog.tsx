@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { categories, products } from '../data/products';
 import type { Category } from '../types';
 import { ProductCard } from './ProductCard';
-import { CatIcon } from './illustrations';
 import './Catalog.css';
 
 type Filter = Category | 'all';
@@ -40,6 +39,15 @@ export function Catalog() {
     return () => window.removeEventListener('hashchange', apply);
   }, []);
 
+  useEffect(() => {
+    const onSearch = (e: Event) => {
+      const ce = e as CustomEvent<string>;
+      if (typeof ce.detail === 'string') setQuery(ce.detail);
+    };
+    window.addEventListener('arm-search', onSearch);
+    return () => window.removeEventListener('arm-search', onSearch);
+  }, []);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return products.filter((p) => {
@@ -53,80 +61,41 @@ export function Catalog() {
     });
   }, [filter, query]);
 
+  const activeCategory = categories.find((c) => c.id === filter);
+
   return (
     <section className="section catalog" id="catalog">
       <div className="container">
-        <header className="section-title">
-          <span className="eyebrow">Каталог</span>
-          <h2>Вкусная Армения — в одном месте</h2>
-          <p>
-            От лаваша из тандыра до выдержанного коньяка Арарат. Мы сами
-            привозим продукты от армянских фермеров и семейных виноделен.
-          </p>
+        <header className="catalog__heading">
+          <h2>
+            {activeCategory && filter !== 'all'
+              ? activeCategory.label
+              : 'Каталог'}
+            {activeCategory?.labelArm && filter !== 'all' && (
+              <em className="catalog__heading-arm">
+                {' · '}
+                {activeCategory.labelArm}
+              </em>
+            )}
+          </h2>
+          <span className="catalog__heading-count">
+            {filtered.length}{' '}
+            {pluralize(filtered.length, ['товар', 'товара', 'товаров'])}
+          </span>
         </header>
 
-        <div className="catalog__controls">
-          <div className="catalog__search">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden
+        {query && (
+          <div className="catalog__query">
+            Поиск: <strong>«{query}»</strong>
+            <button
+              type="button"
+              className="catalog__query-reset"
+              onClick={() => setQuery('')}
             >
-              <circle
-                cx="11"
-                cy="11"
-                r="7"
-                stroke="currentColor"
-                strokeWidth="1.7"
-              />
-              <path
-                d="m20 20-3.5-3.5"
-                stroke="currentColor"
-                strokeWidth="1.7"
-                strokeLinecap="round"
-              />
-            </svg>
-            <input
-              type="search"
-              value={query}
-              placeholder="Найти лаваш, бастурму, вино…"
-              onChange={(e) => setQuery(e.target.value)}
-              aria-label="Поиск по каталогу"
-            />
+              Сбросить
+            </button>
           </div>
-
-          <div
-            className="catalog__tabs"
-            role="tablist"
-            aria-label="Категории товаров"
-          >
-            {categories.map((c) => (
-              <button
-                key={c.id}
-                role="tab"
-                aria-selected={filter === c.id}
-                className={`catalog__tab ${filter === c.id ? 'is-active' : ''}`}
-                onClick={() => setFilter(c.id)}
-              >
-                <span className="catalog__tab-ico" aria-hidden>
-                  {c.id === 'all' ? (
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 3l2.5 6 6.5.8-5 4.4 1.6 6.4L12 17.4 6.4 20.6 8 14.2l-5-4.4 6.5-.8z" />
-                    </svg>
-                  ) : (
-                    <CatIcon id={c.id as string} width={18} height={18} />
-                  )}
-                </span>
-                <span>{c.label}</span>
-                {c.labelArm && (
-                  <em className="catalog__tab-arm">{c.labelArm}</em>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
+        )}
 
         {filtered.length === 0 ? (
           <div className="catalog__empty">
@@ -136,6 +105,7 @@ export function Catalog() {
               onClick={() => {
                 setQuery('');
                 setFilter('all');
+                window.location.hash = '#cat-all';
               }}
             >
               Сбросить фильтры
@@ -143,20 +113,20 @@ export function Catalog() {
           </div>
         ) : (
           <div className="catalog__grid">
-            {filtered.map((p, i) => (
-              <ProductCard
-                key={p.id}
-                product={p}
-                variant={
-                  filter === 'all' && p.featured && (i === 0 || i === 6)
-                    ? 'featured'
-                    : 'standard'
-                }
-              />
+            {filtered.map((p) => (
+              <ProductCard key={p.id} product={p} />
             ))}
           </div>
         )}
       </div>
     </section>
   );
+}
+
+function pluralize(n: number, forms: [string, string, string]) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return forms[0];
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return forms[1];
+  return forms[2];
 }

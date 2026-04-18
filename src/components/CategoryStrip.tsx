@@ -1,4 +1,5 @@
-import { categories, products } from '../data/products';
+import { useEffect, useState } from 'react';
+import { categories } from '../data/products';
 import { CatIcon } from './illustrations';
 import './CategoryStrip.css';
 
@@ -12,58 +13,58 @@ function scrollToCatalog(hash: string) {
 }
 
 export function CategoryStrip() {
-  const countByCat = new Map<string, number>();
-  for (const p of products) {
-    countByCat.set(p.category, (countByCat.get(p.category) ?? 0) + 1);
-  }
+  const [active, setActive] = useState<string>('all');
+
+  useEffect(() => {
+    const apply = () => {
+      const m = window.location.hash.match(/^#cat-(.+)$/);
+      setActive(m ? m[1] : 'all');
+    };
+    apply();
+    window.addEventListener('hashchange', apply);
+    return () => window.removeEventListener('hashchange', apply);
+  }, []);
 
   return (
     <section className="cat-strip" aria-label="Категории каталога">
-      <div className="container cat-strip__wrap">
-        <div className="cat-strip__head">
-          <div>
-            <span className="eyebrow">Каталог · Ծաղկեփունջ</span>
-            <h2 className="cat-strip__title">
-              <span>{products.length} позиций,</span>
-              <br />
-              <em>собранных у&nbsp;армянских мастеров</em>
-            </h2>
-          </div>
-          <button
-            type="button"
-            className="cat-strip__all"
-            onClick={() => scrollToCatalog('#cat-all')}
-          >
-            Весь каталог <span aria-hidden>→</span>
-          </button>
-        </div>
-
-        <div className="cat-strip__scroller">
-          {categories
-            .filter((c) => c.id !== 'all')
-            .map((c, i) => (
+      <div className="container">
+        <div className="cat-strip__scroller" role="tablist">
+          {categories.map((c) => {
+            const isActive = active === c.id;
+            return (
               <button
                 key={c.id}
                 type="button"
-                className={`cat-strip__card cat-strip__card--${c.id}`}
+                role="tab"
+                aria-selected={isActive}
+                className={`cat-chip ${isActive ? 'is-active' : ''}`}
                 onClick={() => scrollToCatalog(`#cat-${c.id}`)}
               >
-                <span className="cat-strip__num">{String(i + 1).padStart(2, '0')}</span>
-                <span className="cat-strip__icon" aria-hidden>
-                  <CatIcon id={c.id as string} />
-                </span>
-                <span className="cat-strip__labels">
-                  <span className="cat-strip__label">{c.label}</span>
-                  {c.labelArm && (
-                    <em className="cat-strip__arm">{c.labelArm}</em>
+                <span className="cat-chip__ico" aria-hidden>
+                  {c.id === 'all' ? (
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                      <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                      <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                      <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                    </svg>
+                  ) : (
+                    <CatIcon id={c.id as string} width={22} height={22} />
                   )}
                 </span>
-                <span className="cat-strip__count">
-                  {countByCat.get(c.id) ?? 0} позиций
-                </span>
-                <span className="cat-strip__arrow" aria-hidden>→</span>
+                <span className="cat-chip__label">{c.label}</span>
               </button>
-            ))}
+            );
+          })}
         </div>
       </div>
     </section>

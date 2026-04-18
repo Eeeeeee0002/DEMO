@@ -1,153 +1,85 @@
 .catalog {
-  position: relative;
+  padding: 32px 0 56px;
   background: var(--bg);
-  border-top: 1px solid var(--hairline);
 }
 
-.catalog::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at 80% 10%,
-    rgba(167, 32, 46, 0.08) 0%,
-    transparent 50%
-  );
-}
-
-.catalog > .container {
-  position: relative;
-  z-index: 1;
-}
-
-.catalog__controls {
+.catalog__heading {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding-top: 4px;
 }
-
-.catalog__search {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  padding: 1rem 1.25rem;
-  background: var(--surface);
-  border: 1px solid var(--hairline);
-  transition: border-color 0.25s ease;
-  max-width: 640px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.catalog__search:focus-within {
-  border-color: var(--brass-bright);
-  box-shadow: 0 0 0 1px var(--brass);
-}
-
-.catalog__search svg {
-  color: var(--brass);
-  flex-shrink: 0;
-}
-
-.catalog__search input {
-  flex: 1;
-  font-size: 0.95rem;
+.catalog__heading h2 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.2vw, 32px);
+  font-weight: 600;
+  margin: 0;
   color: var(--bone);
-  font-family: var(--sans);
-  background: transparent;
+  letter-spacing: -0.01em;
 }
-
-.catalog__search input::placeholder {
-  color: var(--muted);
-}
-
-.catalog__tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.catalog__tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.6rem 1.1rem;
-  background: transparent;
-  color: var(--bone-soft);
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  border: 1px solid var(--hairline);
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease;
-}
-
-.catalog__tab:hover {
-  color: var(--bone);
-  border-color: var(--hairline-strong);
-  transform: translateY(-1px);
-}
-
-.catalog__tab-ico {
-  display: inline-flex;
-  align-items: center;
-  color: var(--brass-bright);
-  transition: color 0.25s ease;
-}
-
-.catalog__tab-arm {
+.catalog__heading-arm {
   font-family: var(--serif-arm);
-  font-style: italic;
-  font-size: 0.85rem;
+  font-style: normal;
   color: var(--brass);
-  opacity: 0.8;
+  font-weight: 500;
+  font-size: 0.7em;
+}
+.catalog__heading-count {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 
-.catalog__tab.is-active {
-  background: var(--pom);
-  color: var(--on-pom);
-  border-color: var(--pom-bright);
-  box-shadow: 0 10px 22px -12px var(--pom-glow);
+.catalog__query {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(138, 106, 52, 0.08);
+  border-radius: 999px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--bone-soft);
 }
-
-.catalog__tab.is-active .catalog__tab-ico,
-.catalog__tab.is-active .catalog__tab-arm {
-  color: var(--on-pom);
-  opacity: 1;
+.catalog__query-reset {
+  border: 0;
+  background: transparent;
+  color: var(--pom);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  padding: 0;
+}
+.catalog__query-reset:hover {
+  text-decoration: underline;
 }
 
 .catalog__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
 }
 
 .catalog__empty {
   text-align: center;
-  padding: 4rem 1rem;
-  color: var(--bone-soft);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
+  padding: 60px 20px;
+  color: var(--muted);
+}
+.catalog__empty p {
+  margin: 0 0 14px;
+  font-size: 16px;
 }
 
-@media (min-width: 960px) {
-  .catalog__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (max-width: 520px) {
+  .catalog {
+    padding: 20px 0 100px; /* extra bottom for sticky cart bar */
   }
-}
-
-@media (min-width: 1280px) {
   .catalog__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }

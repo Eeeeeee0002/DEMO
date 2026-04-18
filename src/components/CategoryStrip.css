@@ -1,235 +1,89 @@
 .cat-strip {
-  position: relative;
-  padding: clamp(1.4rem, 3vw, 2.4rem) 0 clamp(1.6rem, 3vw, 2.4rem);
-  background: var(--bg);
+  position: sticky;
+  top: 72px;
+  z-index: 40;
+  background: rgba(253, 246, 229, 0.94);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
+  padding: 10px 0;
 }
 
-.cat-strip__wrap {
-  position: relative;
-}
-
-.cat-strip__head {
+.cat-strip__scroller {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 0;
+}
+.cat-strip__scroller::-webkit-scrollbar {
+  display: none;
 }
 
-.cat-strip__head .eyebrow {
-  margin-bottom: 1rem;
-}
-
-.cat-strip__title {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-  line-height: 1.1;
-  color: var(--bone);
-  letter-spacing: -0.015em;
-  margin: 0;
-}
-
-.cat-strip__title em {
-  font-style: italic;
-  color: var(--brass-bright);
-}
-
-.cat-strip__all {
+.cat-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-  font-family: var(--sans);
-  font-size: 0.78rem;
+  gap: 8px;
+  padding: 10px 16px 10px 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--hairline);
+  color: var(--bone);
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--bone);
-  padding: 0.85rem 1.4rem;
-  border: 1px solid var(--hairline-strong);
-  transition: all 0.25s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+.cat-chip:hover {
+  background: #fff9e8;
+  border-color: var(--hairline-strong);
+}
+.cat-chip:active {
+  transform: scale(0.97);
+}
+.cat-chip.is-active {
+  background: var(--pom);
+  border-color: var(--pom);
+  color: var(--on-pom);
+  box-shadow: 0 6px 16px -8px rgba(167, 32, 46, 0.55);
 }
 
-.cat-strip__all:hover {
-  border-color: var(--brass-bright);
-  color: var(--brass-bright);
-  transform: translateY(-2px);
-}
-
-/* Horizontal scrolling catalog of 8 cards */
-.cat-strip__scroller {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(230px, 1fr);
-  gap: 0;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: var(--brass) transparent;
-  padding-bottom: 0.5rem;
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-}
-
-.cat-strip__scroller::-webkit-scrollbar {
-  height: 3px;
-}
-.cat-strip__scroller::-webkit-scrollbar-track {
-  background: transparent;
-}
-.cat-strip__scroller::-webkit-scrollbar-thumb {
-  background: var(--brass);
-  border: none;
-}
-
-/* Card */
-.cat-strip__card {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: auto auto auto;
-  grid-template-areas:
-    'num   icon   arrow'
-    'lbls  lbls   lbls'
-    'count count  count';
+.cat-chip__ico {
+  display: inline-flex;
   align-items: center;
-  gap: 0.4rem 0.9rem;
-  padding: 1.6rem 1.4rem 1.4rem;
-  background: transparent;
-  border: none;
-  border-right: 1px solid var(--hairline);
-  color: var(--bone);
-  text-align: left;
-  scroll-snap-align: start;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
-  min-height: 170px;
-  overflow: hidden;
-}
-
-.cat-strip__card:last-child {
-  border-right: none;
-}
-
-.cat-strip__card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at 50% 100%,
-    rgba(167, 32, 46, 0.2) 0%,
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.cat-strip__card:hover::before {
-  opacity: 1;
-}
-
-.cat-strip__card:hover {
-  background: var(--surface);
-}
-
-.cat-strip__num {
-  grid-area: num;
-  font-family: var(--serif);
-  font-size: 0.85rem;
-  font-style: italic;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(138, 106, 52, 0.1);
   color: var(--brass);
-  opacity: 0.8;
-  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+.cat-chip.is-active .cat-chip__ico {
+  background: rgba(253, 246, 229, 0.2);
+  color: var(--on-pom);
+}
+.cat-chip__label {
+  font-size: 14px;
 }
 
-.cat-strip__icon {
-  grid-area: icon;
-  justify-self: end;
-  color: var(--brass-bright);
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.3s ease;
-}
-
-.cat-strip__icon svg {
-  width: 34px;
-  height: 34px;
-}
-
-.cat-strip__card:hover .cat-strip__icon {
-  color: var(--pom-bright);
-  transform: translateY(-4px) rotate(-6deg);
-}
-
-.cat-strip__arrow {
-  grid-area: arrow;
-  font-size: 1.1rem;
-  color: var(--brass);
-  opacity: 0.4;
-  transition: all 0.3s ease;
-  justify-self: end;
-  margin-top: -28px;
-}
-
-.cat-strip__card:hover .cat-strip__arrow {
-  opacity: 1;
-  color: var(--pom-bright);
-  transform: translateX(4px);
-}
-
-.cat-strip__labels {
-  grid-area: lbls;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  margin-top: 0.4rem;
-}
-
-.cat-strip__label {
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--bone);
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-}
-
-.cat-strip__arm {
-  font-family: var(--serif-arm);
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--pom-bright);
-  opacity: 0.75;
-}
-
-.cat-strip__count {
-  grid-area: count;
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding-top: 0.6rem;
-  border-top: 1px solid var(--hairline);
-  margin-top: 0.3rem;
-}
-
-@media (max-width: 680px) {
-  .cat-strip__scroller {
-    grid-auto-columns: minmax(190px, 75%);
+@media (max-width: 900px) {
+  .cat-strip {
+    top: 60px;
+    padding: 8px 0;
   }
-  .cat-strip__head {
-    align-items: flex-start;
+  .cat-chip {
+    padding: 8px 14px 8px 10px;
+    font-size: 13px;
   }
-  .cat-strip__card {
-    padding: 1.3rem 1.1rem;
-    min-height: 160px;
-  }
-  .cat-strip__label {
-    font-size: 1rem;
+  .cat-chip__ico {
+    width: 22px;
+    height: 22px;
   }
 }
