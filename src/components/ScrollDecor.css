@@ -14,6 +14,7 @@
   transition: opacity 0.4s ease;
 }
 .sd-shape--pom { width: 520px; height: 520px; max-width: 60vw; opacity: 0.85; }
+.sd-shape--tree { width: 360px; height: 500px; max-width: 52vw; opacity: 0.95; }
 .sd-shape--khach { width: 240px; height: 320px; opacity: 0.9; }
 .sd-shape--wheat { width: 70px; height: 180px; opacity: 0.85; }
 .sd-shape--vine { width: 260px; height: 120px; opacity: 0.95; }
@@ -72,6 +73,7 @@ body > #root { position: relative; z-index: 1; }
 
 @media (max-width: 760px) {
   .sd-shape--pom { width: 380px; height: 380px; }
+  .sd-shape--tree { width: 240px; height: 340px; opacity: 0.75; }
   .sd-shape--khach { display: none; }
   .sd-shape--wheat { width: 52px; height: 140px; top: 26%; right: 1%; }
   .sd-shape--vine { width: 180px; height: 90px; }

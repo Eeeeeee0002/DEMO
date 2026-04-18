@@ -51,25 +51,92 @@ export function ScrollDecor() {
 
   return (
     <div className="scroll-decor" ref={layerRef} aria-hidden>
-      {/* Big faint pomegranate, upper-right */}
+      {/* Гранатовое дерево справа сверху — вместо одинокого плода-тени */}
       <svg
-        className="sd-shape sd-shape--pom"
-        data-parallax="0.18"
-        data-parallax-rotate="0.01"
-        viewBox="0 0 100 100"
-        style={{ top: '8%', right: '-6%' }}
+        className="sd-shape sd-shape--tree"
+        data-parallax="0.16"
+        viewBox="0 0 260 360"
+        style={{ top: '-2%', right: '-4%' }}
       >
-        <path
-          d="M50 22 C 28 22, 16 40, 16 58 C 16 78, 34 90, 50 90 C 66 90, 84 78, 84 58 C 84 40, 72 22, 50 22 Z"
-          fill="rgba(95, 17, 36, 0.07)"
-        />
-        <path
-          d="M44 12 L48 24 M50 10 L50 24 M56 12 L52 24"
-          stroke="rgba(197, 158, 69, 0.25)"
-          strokeWidth="2"
+        {/* Ствол и главные ветви — тонкими тёмно-винными линиями */}
+        <g
+          stroke="rgba(95, 17, 36, 0.22)"
+          strokeWidth="2.2"
           strokeLinecap="round"
           fill="none"
-        />
+        >
+          <path d="M132 360 C 130 300, 136 260, 132 210 C 128 176, 134 140, 130 100 C 128 78, 136 56, 132 30" />
+          {/* Боковые ветви */}
+          <path d="M132 220 C 108 210, 88 196, 70 176" strokeWidth="1.8" />
+          <path d="M132 200 C 156 196, 178 184, 196 168" strokeWidth="1.8" />
+          <path d="M130 160 C 110 156, 92 144, 78 124" strokeWidth="1.6" />
+          <path d="M132 150 C 154 146, 174 136, 188 118" strokeWidth="1.6" />
+          <path d="M130 110 C 114 104, 100 92, 90 74" strokeWidth="1.4" />
+          <path d="M132 100 C 148 94, 162 84, 170 66" strokeWidth="1.4" />
+          {/* Веточки к плодам */}
+          <path d="M70 176 L66 186" strokeWidth="1.2" />
+          <path d="M196 168 L202 178" strokeWidth="1.2" />
+          <path d="M78 124 L74 134" strokeWidth="1.1" />
+          <path d="M188 118 L194 128" strokeWidth="1.1" />
+          <path d="M90 74 L88 84" strokeWidth="1" />
+          <path d="M170 66 L174 76" strokeWidth="1" />
+        </g>
+
+        {/* Листва — мягкие перистые пятна в тёплом зелёном */}
+        <g fill="rgba(74, 110, 52, 0.12)">
+          <ellipse cx="120" cy="44" rx="46" ry="28" />
+          <ellipse cx="76" cy="96" rx="40" ry="24" />
+          <ellipse cx="180" cy="90" rx="42" ry="26" />
+          <ellipse cx="64" cy="150" rx="38" ry="22" />
+          <ellipse cx="198" cy="144" rx="40" ry="24" />
+          <ellipse cx="130" cy="156" rx="48" ry="28" />
+          <ellipse cx="86" cy="210" rx="36" ry="22" />
+          <ellipse cx="176" cy="204" rx="38" ry="24" />
+        </g>
+        {/* Лёгкие золотые штрихи-листья */}
+        <g stroke="rgba(197, 158, 69, 0.26)" strokeWidth="0.7" fill="none" strokeLinecap="round">
+          <path d="M92 38 L110 28 M108 54 L126 42 M138 34 L152 26" />
+          <path d="M54 90 L72 80 M72 104 L88 96 M86 78 L100 70" />
+          <path d="M166 84 L180 76 M180 100 L196 92 M194 78 L208 70" />
+          <path d="M50 150 L66 140 M110 160 L130 150 M150 160 L170 150" />
+        </g>
+
+        {/* Плоды на ветвях — маленькие, винные, с золотой «короной» */}
+        <g>
+          {[
+            { cx: 66, cy: 192, r: 10 },
+            { cx: 202, cy: 184, r: 10 },
+            { cx: 74, cy: 140, r: 8 },
+            { cx: 194, cy: 134, r: 9 },
+            { cx: 88, cy: 90, r: 7 },
+            { cx: 174, cy: 82, r: 8 },
+            { cx: 132, cy: 216, r: 9 },
+            { cx: 110, cy: 166, r: 7 },
+            { cx: 156, cy: 162, r: 7 },
+          ].map((p, i) => (
+            <g key={i}>
+              <circle
+                cx={p.cx}
+                cy={p.cy}
+                r={p.r}
+                fill="rgba(95, 17, 36, 0.35)"
+              />
+              <circle
+                cx={p.cx - p.r * 0.32}
+                cy={p.cy - p.r * 0.3}
+                r={p.r * 0.28}
+                fill="rgba(214, 160, 110, 0.22)"
+              />
+              <path
+                d={`M${p.cx - 2} ${p.cy - p.r} L${p.cx} ${p.cy - p.r - 2.5} L${p.cx + 2} ${p.cy - p.r}`}
+                stroke="rgba(197, 158, 69, 0.55)"
+                strokeWidth="0.7"
+                fill="none"
+                strokeLinecap="round"
+              />
+            </g>
+          ))}
+        </g>
       </svg>
 
       {/* Khachkar cross, mid-left */}
