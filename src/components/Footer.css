@@ -3,7 +3,7 @@
   background: linear-gradient(
     180deg,
     var(--bg) 0%,
-    #c6c1b1 100%
+    #ebe2ca 100%
   );
   color: var(--bone-soft);
   padding: clamp(4rem, 7vw, 6rem) 0 2rem;

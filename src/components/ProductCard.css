@@ -3,22 +3,35 @@
   display: flex;
   flex-direction: column;
   background: #fff;
-  border-radius: 20px;
+  border-radius: 22px;
   border: 1px solid var(--hairline);
   overflow: hidden;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
   will-change: transform;
+  box-shadow: 0 6px 18px -14px rgba(42, 30, 15, 0.14);
+}
+.pcard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(197, 158, 69, 0.35), transparent 45%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
 }
 .pcard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px -16px rgba(80, 40, 10, 0.22);
-  border-color: var(--hairline-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 28px 56px -26px rgba(42, 6, 16, 0.28);
+  border-color: rgba(197, 158, 69, 0.5);
 }
 
 .pcard__visual {
   position: relative;
   aspect-ratio: 1 / 1;
-  background: linear-gradient(160deg, #f2ede0, #d6d1c2);
+  background: linear-gradient(160deg, #fbf6e8, #ebe2ca);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,18 +53,19 @@
 
 .pcard__tag {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 12px;
+  left: 12px;
   z-index: 2;
-  padding: 5px 10px;
-  font-size: 11px;
+  padding: 5px 12px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  background: var(--pom);
-  color: var(--on-pom);
-  border-radius: 6px;
-  box-shadow: 0 4px 10px -4px rgba(122, 19, 41, 0.55);
+  background: var(--pom-deep);
+  color: var(--brass-soft);
+  border-radius: 999px;
+  border: 1px solid rgba(227, 199, 122, 0.4);
+  box-shadow: 0 6px 14px -6px rgba(42, 6, 16, 0.6);
 }
 
 .pcard__body {
@@ -119,21 +133,21 @@
 }
 
 .pcard__add {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: var(--pom);
-  color: var(--on-pom);
-  border: 0;
-  font-size: 24px;
+  background: linear-gradient(135deg, var(--pom-deep), var(--pom));
+  color: var(--brass-soft);
+  border: 1px solid rgba(227, 199, 122, 0.35);
+  font-size: 22px;
   font-weight: 400;
   line-height: 1;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
-  box-shadow: 0 6px 14px -6px rgba(122, 19, 41, 0.55);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 10px 22px -10px rgba(42, 6, 16, 0.55);
   flex-shrink: 0;
   font-family: inherit;
 }

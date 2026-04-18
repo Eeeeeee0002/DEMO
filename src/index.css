@@ -1,46 +1,38 @@
 :root {
-  /* Soft warm neutral (manuscript paper / gentle taupe) */
-  --bg: #e2ded2;
-  --bg-raised: #ece7d9;
-  --surface: #f2ede0;
-  --surface-2: #d6d1c2;
-  --surface-3: #c6c1b1;
+  /* Premium ivory / parchment — luxurious light surface */
+  --bg: #f4eedd;
+  --bg-raised: #faf4e4;
+  --surface: #ffffff;
+  --surface-2: #f0e8d2;
+  --surface-3: #ddd2b6;
 
-  /* Bouquet accents — botanical illumination palette */
-  --bloom-coral: #e85a3a;
-  --bloom-yellow: #f5c54b;
-  --bloom-rose: #e63d72;
-  --bloom-purple: #7d3fa2;
-  --bloom-teal: #2fb8a7;
-  --bloom-green: #4a8a3f;
+  /* Deep Armenian wine — rich burgundy */
+  --pom-deep: #2a0610;
+  --pom: #5f1124;
+  --pom-bright: #871a36;
+  --pom-glow: rgba(95, 17, 36, 0.28);
 
-  /* Burgundy / бордовый — deep Armenian wine tone */
-  --pom-deep: #3d0a14;
-  --pom: #7a1329;
-  --pom-bright: #9b1b36;
-  --pom-glow: rgba(122, 19, 41, 0.32);
+  /* Premium gold — warm brass accents */
+  --brass: #9c7a2c;
+  --brass-bright: #c59e45;
+  --brass-soft: #e3c77a;
 
-  /* Brass / warm gold (deepened for light bg) */
-  --brass: #8a6a34;
-  --brass-bright: #a88148;
-  --brass-soft: #c9a469;
+  /* Typography — crisp espresso on ivory */
+  --bone: #1c140a;
+  --bone-soft: #3d2f1e;
+  --muted: #806c4a;
+  --muted-dim: #a99073;
 
-  /* Typography colors — now dark warm brown text */
-  --bone: #2a1d12;
-  --bone-soft: #4a3a27;
-  --muted: #7a6649;
-  --muted-dim: #9d8a6c;
+  /* Button contrast */
+  --on-pom: #f8ecc9;
+  --on-brass: #1c140a;
 
-  /* Button contrast overrides */
-  --on-pom: #fdf6e5;
-  --on-brass: #2a1d12;
-
-  /* Structural */
-  --hairline: rgba(60, 34, 10, 0.16);
-  --hairline-strong: rgba(60, 34, 10, 0.34);
-  --shadow-deep: 0 30px 80px -30px rgba(80, 40, 10, 0.22);
-  --shadow-card: 0 20px 50px -24px rgba(80, 40, 10, 0.18);
-  --shadow-soft: 0 10px 24px -12px rgba(80, 40, 10, 0.12);
+  /* Structural — fine hairlines for premium feel */
+  --hairline: rgba(28, 20, 10, 0.09);
+  --hairline-strong: rgba(28, 20, 10, 0.22);
+  --shadow-deep: 0 40px 100px -40px rgba(42, 30, 15, 0.28);
+  --shadow-card: 0 24px 60px -28px rgba(42, 30, 15, 0.22);
+  --shadow-soft: 0 12px 28px -14px rgba(42, 30, 15, 0.14);
 
   /* Fonts */
   --serif: 'Cormorant Garamond', 'Noto Serif Armenian', Georgia, serif;

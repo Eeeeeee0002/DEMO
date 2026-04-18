@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
-import { Flowers } from './Flowers';
 import './Hero.css';
 
 export function Hero() {
@@ -88,14 +87,9 @@ export function Hero() {
         </div>
 
         <div className="hero__visual" aria-hidden>
-          <div className="hero__bloom hero__bloom--main">
-            <Flowers size={320} />
-          </div>
-          <div className="hero__bloom hero__bloom--small">
-            <Flowers size={160} />
-          </div>
+          <div className="hero__halo" />
           <div className="hero__mark">
-            <Logo size={280} />
+            <Logo size={300} />
           </div>
           <span className="hero__arm" aria-hidden>
             Արմ Մարկետ

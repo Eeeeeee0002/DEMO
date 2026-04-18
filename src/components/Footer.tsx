@@ -1,15 +1,12 @@
 import { Logo } from './Logo';
 import { Ornament } from './Ornament';
-import { Flowers } from './Flowers';
 import './Footer.css';
 
 export function Footer() {
   return (
     <footer className="footer" id="contacts">
       <div className="footer__ornament" aria-hidden>
-        <Flowers variant="sprig" size={360} className="footer__sprig footer__sprig--l" />
-        <Ornament width={260} color="var(--brass)" />
-        <Flowers variant="sprig" size={360} className="footer__sprig footer__sprig--r" />
+        <Ornament width={320} color="var(--brass)" />
       </div>
       <div className="container footer__grid">
         <div className="footer__brand">
