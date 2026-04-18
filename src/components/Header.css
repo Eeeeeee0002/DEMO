@@ -4,8 +4,8 @@
   z-index: 50;
   background: linear-gradient(
     to bottom,
-    rgba(247, 224, 201, 0.92) 0%,
-    rgba(236, 201, 176, 0.82) 100%
+    rgba(242, 237, 224, 0.92) 0%,
+    rgba(226, 222, 210, 0.82) 100%
   );
   backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
@@ -17,7 +17,7 @@
 
 .site-header.is-scrolled {
   border-bottom-color: var(--hairline);
-  background: rgba(247, 224, 201, 0.96);
+  background: rgba(242, 237, 224, 0.96);
   box-shadow: 0 14px 30px -20px rgba(80, 40, 10, 0.22);
 }
 
@@ -204,7 +204,7 @@
     left: 0;
     right: 0;
     flex-direction: column;
-    background: rgba(247, 224, 201, 0.98);
+    background: rgba(242, 237, 224, 0.98);
     border-top: 1px solid var(--hairline);
     padding: 1.5rem 2rem;
     gap: 1.2rem;

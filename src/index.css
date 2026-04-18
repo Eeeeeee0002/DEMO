@@ -1,11 +1,18 @@
 :root {
-  /* Armenian tuf — rose/salmon volcanic stone (Yerevan facades) */
-  --bg: #ecc9b0;
-  --bg-raised: #f3d6bd;
-  --surface: #f7e0c9;
-  --surface-2: #e8bd9f;
-  --surface-3: #d9a988;
-  --tuf-veined: #e1b598;
+  /* Soft warm neutral (manuscript paper / gentle taupe) */
+  --bg: #e2ded2;
+  --bg-raised: #ece7d9;
+  --surface: #f2ede0;
+  --surface-2: #d6d1c2;
+  --surface-3: #c6c1b1;
+
+  /* Bouquet accents — botanical illumination palette */
+  --bloom-coral: #e85a3a;
+  --bloom-yellow: #f5c54b;
+  --bloom-rose: #e63d72;
+  --bloom-purple: #7d3fa2;
+  --bloom-teal: #2fb8a7;
+  --bloom-green: #4a8a3f;
 
   /* Burgundy / бордовый — deep Armenian wine tone */
   --pom-deep: #3d0a14;
@@ -66,24 +73,21 @@ body,
 }
 
 body {
-  background: var(--bg);
-  /* Subtle atmospheric vignettes on parchment */
+  background-color: var(--bg);
+  /* Soft watercolour-sketchbook neutral — like the reference */
   background-image:
     radial-gradient(
-      ellipse at 12% 0%,
-      rgba(122, 19, 41, 0.10) 0%,
-      transparent 45%
+      ellipse 65% 45% at 18% 8%,
+      rgba(122, 19, 41, 0.045) 0%,
+      transparent 65%
     ),
     radial-gradient(
-      ellipse at 88% 100%,
-      rgba(138, 106, 52, 0.10) 0%,
-      transparent 55%
+      ellipse 70% 50% at 85% 95%,
+      rgba(74, 138, 63, 0.05) 0%,
+      transparent 70%
     ),
-    radial-gradient(
-      ellipse at 50% 50%,
-      rgba(253, 246, 229, 0.6) 0%,
-      var(--bg) 80%
-    );
+    linear-gradient(180deg, #ebe7da 0%, #e0dcd0 55%, #d6d2c4 100%);
+  background-attachment: fixed;
   min-height: 100vh;
   overflow-x: hidden;
 }

@@ -8,7 +8,7 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
   padding: 18px;
-  background: linear-gradient(160deg, #faeadb, #ecc9b0);
+  background: linear-gradient(160deg, #f2ede0, #e2ded2);
   border: 1px solid var(--hairline);
   border-radius: 20px;
   box-shadow: 0 14px 30px -20px rgba(80, 40, 10, 0.15);

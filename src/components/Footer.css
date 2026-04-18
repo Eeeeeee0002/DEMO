@@ -3,7 +3,7 @@
   background: linear-gradient(
     180deg,
     var(--bg) 0%,
-    #d9a988 100%
+    #c6c1b1 100%
   );
   color: var(--bone-soft);
   padding: clamp(4rem, 7vw, 6rem) 0 2rem;
@@ -29,8 +29,23 @@
   left: 50%;
   transform: translateX(-50%);
   color: var(--brass);
-  opacity: 0.5;
+  opacity: 0.6;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.footer__sprig {
+  opacity: 0.85;
+  filter: drop-shadow(0 6px 14px rgba(80, 40, 10, 0.2));
+}
+.footer__sprig--l {
+  transform: scaleX(-1);
+}
+@media (max-width: 760px) {
+  .footer__sprig {
+    display: none;
+  }
 }
 
 .footer__grid {
