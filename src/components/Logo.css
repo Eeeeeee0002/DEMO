@@ -1,0 +1,81 @@
+/* Animated pomegranate logo */
+.armlogo {
+  display: block;
+  overflow: visible;
+  transform-origin: 50% 90%;
+}
+
+.armlogo--animated {
+  animation: armlogoFloat 5.6s ease-in-out infinite;
+}
+
+.armlogo--animated .armlogo__body,
+.armlogo--animated .armlogo__cut,
+.armlogo--animated .armlogo__crown,
+.armlogo--animated .armlogo__leaf,
+.armlogo--animated .armlogo__shadow {
+  transform-origin: 50% 90%;
+}
+
+.armlogo--animated .armlogo__crown {
+  animation: armlogoCrown 5.6s ease-in-out infinite;
+  transform-origin: 50% 24px;
+}
+
+.armlogo--animated .armlogo__leaf {
+  animation: armlogoLeaf 4.2s ease-in-out infinite;
+  transform-origin: 62px 20px;
+}
+
+.armlogo--animated .armlogo__shadow {
+  animation: armlogoShadow 5.6s ease-in-out infinite;
+  transform-origin: 50% 92px;
+}
+
+.armlogo--animated .armlogo__glint {
+  animation: armlogoGlint 2.4s ease-in-out infinite;
+  transform-origin: center;
+}
+.armlogo--animated .armlogo__glint--1 { animation-delay: 0s; }
+.armlogo--animated .armlogo__glint--2 { animation-delay: 0.8s; }
+.armlogo--animated .armlogo__glint--3 { animation-delay: 1.6s; }
+
+@keyframes armlogoFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-4px) rotate(2deg); }
+}
+
+@keyframes armlogoCrown {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(4deg); }
+}
+
+@keyframes armlogoLeaf {
+  0%, 100% { transform: rotate(-4deg) translateX(0); }
+  50%      { transform: rotate(6deg) translateX(0.5px); }
+}
+
+@keyframes armlogoShadow {
+  0%, 100% { transform: scaleX(1); opacity: 0.55; }
+  50%      { transform: scaleX(0.88); opacity: 0.35; }
+}
+
+@keyframes armlogoGlint {
+  0%, 100% { opacity: 0.2; transform: scale(0.6); }
+  50%      { opacity: 1;   transform: scale(1.6); }
+}
+
+/* Hover — brief pop */
+.armlogo--animated:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .armlogo--animated,
+  .armlogo--animated .armlogo__crown,
+  .armlogo--animated .armlogo__leaf,
+  .armlogo--animated .armlogo__shadow,
+  .armlogo--animated .armlogo__glint {
+    animation: none;
+  }
+}
