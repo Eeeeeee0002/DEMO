@@ -63,10 +63,10 @@
   background:
     radial-gradient(
       ellipse at 50% 30%,
-      rgba(167, 32, 46, 0.3) 0%,
+      rgba(167, 32, 46, 0.18) 0%,
       transparent 55%
     ),
-    linear-gradient(180deg, #1b0a0c 0%, #0a0402 100%);
+    linear-gradient(180deg, #f4d9c1 0%, #e7bfa0 100%);
 }
 
 .story__photo-bg::after {
@@ -78,14 +78,14 @@
       45deg,
       transparent 0,
       transparent 40px,
-      rgba(181, 138, 82, 0.06) 40px,
-      rgba(181, 138, 82, 0.06) 41px
+      rgba(80, 40, 10, 0.06) 40px,
+      rgba(80, 40, 10, 0.06) 41px
     );
 }
 
 .story__pom {
   position: absolute;
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(0 18px 26px rgba(80, 40, 10, 0.3));
 }
 
 .story__pom--a {
@@ -107,9 +107,9 @@
   bottom: 30px;
   left: 30px;
   padding: 1rem 1.3rem;
-  background: rgba(10, 6, 4, 0.85);
+  background: rgba(253, 246, 229, 0.92);
   border: 1px solid var(--brass);
-  color: var(--brass-bright);
+  color: var(--bone);
   backdrop-filter: blur(10px);
   z-index: 3;
 }

@@ -3,7 +3,7 @@
   background: linear-gradient(
     180deg,
     var(--bg) 0%,
-    #050302 100%
+    #e6d2a7 100%
   );
   color: var(--bone-soft);
   padding: clamp(4rem, 7vw, 6rem) 0 2rem;
@@ -17,7 +17,7 @@
   inset: 0;
   background: radial-gradient(
     ellipse at 50% 0%,
-    rgba(167, 32, 46, 0.15) 0%,
+    rgba(167, 32, 46, 0.10) 0%,
     transparent 50%
   );
   pointer-events: none;
@@ -96,7 +96,7 @@
 .footer__socials a:hover {
   background: var(--pom);
   border-color: var(--pom-bright);
-  color: var(--bone);
+  color: var(--on-pom);
   transform: translateY(-2px);
 }
 

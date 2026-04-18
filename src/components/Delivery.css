@@ -3,7 +3,7 @@
   background: linear-gradient(
     180deg,
     var(--bg) 0%,
-    #070302 100%
+    #e6d2a7 100%
   );
   border-top: 1px solid var(--hairline);
   overflow: hidden;
@@ -98,8 +98,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(167, 32, 46, 0.16);
-  color: var(--pom-bright);
+  background: rgba(167, 32, 46, 0.12);
+  color: var(--pom);
   border: 1px solid var(--hairline-strong);
 }
 
@@ -126,10 +126,10 @@
   background:
     radial-gradient(
       ellipse at 0% 0%,
-      rgba(167, 32, 46, 0.3) 0%,
+      rgba(167, 32, 46, 0.18) 0%,
       transparent 55%
     ),
-    linear-gradient(135deg, #180709 0%, #0a0302 100%);
+    linear-gradient(135deg, #f5deba 0%, #eac990 100%);
   border: 1px solid var(--hairline-strong);
   position: relative;
   overflow: hidden;

@@ -3,9 +3,9 @@
   padding: 1.3rem 0;
   background: linear-gradient(
     90deg,
-    #050302 0%,
+    #e6d2a7 0%,
     var(--bg-raised) 50%,
-    #050302 100%
+    #e6d2a7 100%
   );
   border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);

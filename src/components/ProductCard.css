@@ -22,10 +22,10 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(181, 138, 82, 0.06) 0%,
+    rgba(138, 106, 52, 0.05) 0%,
     transparent 25%,
     transparent 75%,
-    rgba(167, 32, 46, 0.08) 100%
+    rgba(167, 32, 46, 0.05) 100%
   );
   pointer-events: none;
   opacity: 0.8;
@@ -45,10 +45,10 @@
   overflow: hidden;
   background: radial-gradient(
       ellipse at 50% 40%,
-      rgba(167, 32, 46, 0.18) 0%,
+      rgba(167, 32, 46, 0.10) 0%,
       transparent 60%
     ),
-    linear-gradient(180deg, #16100a 0%, #0a0604 100%);
+    linear-gradient(180deg, #f3e4c2 0%, #e6d2a7 100%);
   border-bottom: 1px solid var(--hairline);
   display: flex;
   align-items: center;
@@ -59,7 +59,7 @@
 .pcard__ill {
   width: 72%;
   height: 72%;
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 18px 26px rgba(80, 40, 10, 0.22));
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 2;
 }
@@ -79,7 +79,7 @@
   pointer-events: none;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(217, 178, 117, 0.12) 0%,
+    rgba(253, 246, 229, 0.45) 0%,
     transparent 55%
   );
   z-index: 1;
@@ -106,9 +106,9 @@
   align-items: center;
   gap: 0.45rem;
   padding: 0.35rem 0.8rem 0.35rem 0.55rem;
-  background: rgba(10, 6, 4, 0.85);
+  background: rgba(253, 246, 229, 0.9);
   border: 1px solid var(--brass);
-  color: var(--brass-bright);
+  color: var(--bone);
   font-size: 0.66rem;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -233,11 +233,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--brass-bright);
+  color: var(--bone-soft);
   font-size: 0.85rem;
   padding: 0.25rem 0.7rem;
   border: 1px solid var(--hairline);
-  background: rgba(10, 6, 4, 0.4);
+  background: rgba(255, 248, 231, 0.6);
 }
 
 .pcard__rating strong {
@@ -279,13 +279,13 @@
 .pcard__add:hover {
   background: linear-gradient(135deg, var(--pom), var(--pom-bright));
   border-color: var(--pom-bright);
-  color: var(--bone);
+  color: var(--on-pom);
   transform: translateY(-2px);
   box-shadow: 0 10px 24px -10px var(--pom-glow);
 }
 
 .pcard__add:hover svg {
-  color: var(--bone);
+  color: var(--on-pom);
 }
 
 .pcard__qty {
@@ -294,7 +294,7 @@
   gap: 0.5rem;
   padding: 0.25rem;
   border: 1px solid var(--brass);
-  background: rgba(10, 6, 4, 0.6);
+  background: rgba(255, 248, 231, 0.6);
   margin-left: auto;
 }
 
@@ -316,7 +316,7 @@
 
 .pcard__qty button:hover {
   background: var(--pom);
-  color: var(--bone);
+  color: var(--on-pom);
 }
 
 .pcard__qty span {
@@ -391,28 +391,28 @@
 .pcard--burgundy .pcard__visual {
   background: radial-gradient(
       ellipse at 50% 40%,
-      rgba(167, 32, 46, 0.22) 0%,
+      rgba(167, 32, 46, 0.14) 0%,
       transparent 60%
     ),
-    linear-gradient(180deg, #180808 0%, #080202 100%);
+    linear-gradient(180deg, #f4d9c1 0%, #e7bfa0 100%);
 }
 
 .pcard--gold .pcard__visual {
   background: radial-gradient(
       ellipse at 50% 40%,
-      rgba(181, 138, 82, 0.22) 0%,
+      rgba(181, 138, 82, 0.16) 0%,
       transparent 60%
     ),
-    linear-gradient(180deg, #1a140a 0%, #0a0604 100%);
+    linear-gradient(180deg, #f5e5bd 0%, #e4cb92 100%);
 }
 
 .pcard--leaf .pcard__visual {
   background: radial-gradient(
       ellipse at 50% 40%,
-      rgba(47, 106, 51, 0.22) 0%,
+      rgba(47, 106, 51, 0.14) 0%,
       transparent 60%
     ),
-    linear-gradient(180deg, #0f180a 0%, #060a04 100%);
+    linear-gradient(180deg, #e6e4bd 0%, #cfd19a 100%);
 }
 
 @media (max-width: 768px) {

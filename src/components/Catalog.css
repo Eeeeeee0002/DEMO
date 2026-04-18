@@ -113,14 +113,14 @@
 
 .catalog__tab.is-active {
   background: var(--pom);
-  color: var(--bone);
+  color: var(--on-pom);
   border-color: var(--pom-bright);
   box-shadow: 0 10px 22px -12px var(--pom-glow);
 }
 
 .catalog__tab.is-active .catalog__tab-ico,
 .catalog__tab.is-active .catalog__tab-arm {
-  color: var(--bone);
+  color: var(--on-pom);
   opacity: 1;
 }
 
