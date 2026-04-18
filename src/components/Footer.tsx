@@ -64,7 +64,7 @@ export function Footer() {
             <li>
               <a href="mailto:hello@armmarket.ru">hello@armmarket.ru</a>
             </li>
-            <li>Москва, Тверская, 18</li>
+            <li>Санкт-Петербург, Невский, 18</li>
             <li>Ежедневно 10:00 — 22:00</li>
           </ul>
         </div>

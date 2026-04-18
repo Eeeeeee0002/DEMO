@@ -78,7 +78,7 @@ export function Hero() {
               <span aria-hidden>🚴</span> Бесплатно от 3 500 ₽
             </span>
             <span className="hero__badge">
-              <span aria-hidden>⏱</span> 90 мин по Москве
+              <span aria-hidden>⏱</span> 90 мин по Петербургу
             </span>
             <span className="hero__badge">
               <span aria-hidden>★</span> 4.9 · 2 400+ заказов

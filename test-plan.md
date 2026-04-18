@@ -1,110 +1,123 @@
-# Test Plan — Arm Market Dark Ethnic Redesign (PR #1)
+# Test plan — WOW scroll effects (Armenian style)
 
-**Target:** https://dist-qopuwvnz.devinapps.com  
-**Scope:** Re-verify that visual redesign (dark graphite + pomegranate + SVG illustrations) preserved existing functionality. Primary focus is UI-visible regressions since the change was entirely CSS/TSX rendering layer.
+## What changed (user-visible)
+Пользователь просил: *«сделай wow эффекты чтобы когда сайт делаешь вниз что то двигалось или появлялось но в стиле армении»*.
 
-**Evidence from code (files read to ground the plan):**
-- `src/components/CategoryStrip.tsx:49` — `scrollToCatalog('#cat-' + c.id)` sets `window.location.hash`
-- `src/components/Catalog.tsx:33-41` — `hashchange` listener sets filter; `validFilters` includes `'wine'`
-- `src/data/products.ts` — wine category contains 3 items (Арени, Арарат, Тутовка)
-- `src/components/Cart.tsx:23` — `delivery = totalPrice >= 3500 || totalPrice === 0 ? 0 : 390`
-- `src/components/Cart.tsx:206` — success copy: `Заказ №{orderNumber} принят`
+Добавлены:
+1. **Parallax-слой** — фиксированный `<div class="scroll-decor">` с 5 армянскими SVG-декорами (гранат, хачкар, пшеничный колос, виноградная лоза, силуэт Арарата). Каждый перемещается по вертикали со своей скоростью (`-scrollY * speed`) через `transform: translate3d(0, Y, 0) rotate(deg)` в `requestAnimationFrame`.
+2. **Floating pomegranates** — 3 рубиновые капельки «плывут» снизу вверх (`@keyframes sdRise`, 18-30 s, цикл).
+3. **Reveal-on-scroll** — у элементов с `data-reveal` `opacity:0; translateY(28px)`, при попадании во viewport IntersectionObserver добавляет `.is-inview` → opacity:1, translate:none (transition 0.9s). Поддерживаются варианты `zoom`/`left`/`right` и `data-reveal-delay` для каскада.
+4. **OrnamentDivider** — армянский орнамент между секциями Catalog и Delivery; линия рисуется через `stroke-dashoffset: 420 → 0` (1.6 s), медальон появляется с масштабом/поворотом (0.9 s delay), точки и подпись — последними.
+5. **Hero** элементы выходят каскадом 0/80/180/260/360/120 ms. **Catalog** карточки — zoom-in с stagger `min(i,10)*70 ms`. **Delivery** пункты — stagger 0/100/200/300 ms.
 
----
+Все эффекты уважают `prefers-reduced-motion`.
 
-## Test 1 — Hero + CategoryStrip visible on first screen (critical user requirement)
+## Environment
+- Live preview: https://dist-qopuwvnz.devinapps.com (только что задеплоено)
+- Desktop viewport 1366×768+ для записи, затем мобильный 390×844 коротко
 
-Steps:
-1. Open https://dist-qopuwvnz.devinapps.com in maximized window.
-2. Without scrolling, inspect the viewport — read the very bottom of the viewport.
+## Primary flow — scroll walkthrough (recorded video)
 
-Assertions:
-- Hero headline text contains `Вкус Армении, высеченный в камне` (visible at top).
-- Without scrolling, the CategoryStrip heading block is visible — specifically, text `25 позиций, собранных у армянских мастеров` AND the `ВЕСЬ КАТАЛОГ →` button must both be in the viewport. Check via `document.querySelector('section[aria-label="Категории каталога"]').getBoundingClientRect().top < window.innerHeight`.
-- No emoji characters (🍷, 🧀, 🍯, 🍞) appear as product icons on the page (the redesign replaced them with SVG).
+Запись делается в Chrome в полноэкранном браузере, максимизированном через `wmctrl`. Все ассерты — либо визуальные по видео, либо через `computer(action="console", content=...)` чтобы прочитать DOM/computed style и подтвердить конкретные числа.
 
-A broken change (e.g. CategoryStrip accidentally removed or pushed way below) would visibly fail this check — this was the regression fixed in the latest commit.
+### 1. Precondition — «Эффекты спят в топ-позиции»
+- Открыть https://dist-qopuwvnz.devinapps.com, `window.scrollTo(0,0)`.
+- **Console ассерт 1a:** `document.querySelector('.scroll-decor')` — существует (не `null`). **Pass если** возвращается HTMLDivElement, **Fail** если null (= ScrollDecor не смонтирован).
+- **Console ассерт 1b:** `document.querySelectorAll('[data-parallax]').length` → **должно быть ≥ 5** (pom, khach, wheat, vine, ararat). **Fail** при < 5.
+- **Console ассерт 1c:** `document.querySelectorAll('.sd-floater').length` → **должно быть === 3**.
+- **Console ассерт 1d:** hero-заголовок уже in-view: `document.querySelector('.hero__title').classList.contains('is-inview')` → **true**.
+- **Console ассерт 1e:** карточки внизу страницы ещё не in-view: `[...document.querySelectorAll('.catalog__grid > [data-reveal]')].slice(-5).every(el => !el.classList.contains('is-inview'))` → **true** (должны быть скрыты, opacity 0).
 
----
+Если сломано: `null`/`0`/`false` означает что хук или декоратор не подключён — тест проваливается.
 
-## Test 2 — Category hash-routing drives catalog filter
+### 2. Parallax drift — декор движется на скролле
+- Замерить transform гранатового силуэта в верхнем-правом углу **до** скролла:
+  ```js
+  getComputedStyle(document.querySelector('.sd-shape--pom')).transform
+  ```
+  Ожидается `matrix(1, 0, 0, 1, 0, 0)` или `matrix3d(…, 0, 0, 0, 1)` с `ty ≈ 0`.
+- Проскроллить на 800 px: `window.scrollTo(0, 800)`, подождать 300 ms.
+- Прочитать transform снова. **Pass если** `ty ≈ -800 * 0.18 = -144` (±10 px), **Fail если** `ty` остался 0 (парализе не работает).
+- Проверить хачкар (`.sd-shape--khach`, speed 0.28): ожидается `ty ≈ -224` (±10). И колос (`.sd-shape--wheat`, speed 0.35): `ty ≈ -280` (±10).
+- **Key assert:** три разных декора должны дрифтовать на три разных расстояния при одном и том же scrollY. Если бы фича была сломана, все три transform были бы одинаковыми (или нулями).
 
-Steps:
-1. On the live preview, scroll down until CategoryStrip is in view.
-2. Click the category pill labeled **«Вина и коньяк»** (Գինի).
-3. Observe URL and catalog section.
+### 3. Reveal на скролле — каскад карточек каталога
+- Вернуться в топ `window.scrollTo(0,0)`, подождать чтобы карточки вышли из viewport → сняли класс? (нет, unobserve — класс остаётся, это ок; это проверка, что нижние карточки ещё не были в viewport).
+- Записать scroll-down к секции Catalog: `document.querySelector('.catalog').scrollIntoView({behavior:'smooth'})`.
+- Визуально на видео: карточки выезжают волной с эффектом zoom (scale 0.92 → 1), **не все сразу**, а по нарастающей — наблюдатель видит «волну».
+- **Console ассерт 3a (после остановки скролла):** все видимые карточки получили `is-inview`:
+  ```js
+  [...document.querySelectorAll('.catalog__grid > [data-reveal]')]
+    .slice(0, 6)
+    .every(el => el.classList.contains('is-inview'))
+  ```
+  → **true**.
+- **Console ассерт 3b:** первая карточка имеет transitionDelay=0, шестая имеет ≈350 ms:
+  ```js
+  document.querySelectorAll('.catalog__grid > [data-reveal]')[0].style.transitionDelay
+  // ожидаем "0ms"
+  document.querySelectorAll('.catalog__grid > [data-reveal]')[5].style.transitionDelay
+  // ожидаем "350ms"  (5 * 70)
+  ```
+  **Fail если** оба равны `""` (stagger не применён — все появятся одновременно).
 
-Assertions:
-- URL bar shows `#cat-wine` (exact string).
-- Page smoothly scrolls so the `#catalog` section header becomes visible.
-- In the catalog, the tab **«Вина и коньяк»** is active (pomegranate background / `aria-selected="true"`).
-- Exactly **3** product cards are visible in the grid: «Вино Арени Резерв», «Коньяк Арарат 5★», «Тутовая водка». No 4th card, no bread/meat/etc.
+### 4. OrnamentDivider — орнамент рисуется на скролле
+- Проскроллить до первого `.orn-div` (между CategoryStrip и Catalog).
+- Визуально на видео: золотая линия «прорисовывается» слева-направо (симметрично от краёв к центру), затем в центре появляется медальон (масштаб 0.2 → 1, поворот -90° → 0°), потом зажигаются точки и подпись «Caтalog · Կատալոգ».
+- **Console ассерт 4a:** `document.querySelector('.orn-div').classList.contains('is-inview')` → **true**.
+- **Console ассерт 4b:** stroke-dashoffset у орнаментных путей должен стать 0:
+  ```js
+  getComputedStyle(document.querySelector('.orn-path')).strokeDashoffset
+  // ожидаем "0" (или "0px") после завершения transition 1.6s
+  ```
+  **Fail если** значение ≈ "420" — значит `.is-inview` не был навешан.
 
-A broken hashchange listener or a bug in `validFilters` would produce either `all` (25 cards) or 0 cards — visibly distinct from 3.
+### 5. Hero cascade (sanity check, можно записать при обновлении страницы)
+- Reload страницы, виден Hero.
+- Визуально на видео: eyebrow («ДОСТАВКА…») появляется первым, заголовок «Вкус Армении» — следом, lead, поиск, бейджи, potом граната-виз (справа). Не все одновременно.
+- **Console ассерт 5:** разные transitionDelay у 6 hero-элементов:
+  ```js
+  ['hero__eyebrow','hero__title','hero__lead','hero__search','hero__badges','hero__visual']
+    .map(c => document.querySelector('.' + c)?.style.transitionDelay)
+  // ожидаем вариации (например ['0ms','80ms','180ms','260ms','360ms','120ms'])
+  ```
+  **Fail если** все `""` или все одинаковые.
 
----
+### 6. Mobile (regression, 390×844)
+- Переключить окно в ширину ~390 px или открыть через mobile emulation.
+- Визуально: хачкар (`.sd-shape--khach`) скрыт (`display:none` в media query ≤760px). Гранат меньше (380 px). Floater-пом остаются и дрейфуют. Контент не прыгает.
 
-## Test 3 — Cart + free-delivery threshold (3 500 ₽)
+### 7. Core functionality (regression — effects don't break site)
+Короткая проверка:
+- Клик по пилюле «Вина и коньяк» → в каталоге 3 карточки, URL `#cat-wine`.
+- Добавить Арени в корзину (qty 1, 2 490 ₽) → корзина показывает «Доставка 390 ₽» и подсказку «осталось 1 010 ₽ до бесплатной».
+- qty=2 (4 980 ₽) → доставка «Бесплатно».
+- Оформить заказ → появляется экран «Շնորհակալություն · Заказ №\d{5} принят».
 
-Steps:
-1. Still on wine category, click **«В корзину»** button on «Вино Арени Резерв» (2 490 ₽).
-2. Open the cart via header «Корзина» button.
-3. Observe delivery cost row.
-4. Click the `+` button in the cart to bump Арени quantity to 2 (total = 4 980 ₽).
-5. Observe delivery cost row again.
+## Pass/Fail criteria — short list
 
-Assertions:
-- After step 1: cart badge = `1`.
-- After step 2: cart sidebar is visible; line item «Вино Арени Резерв» × 1; subtotal `2 490 ₽`; delivery row shows `390 ₽` (NOT "Бесплатно"); there is a progress hint containing `1 010 ₽` (= 3500 − 2490).
-- After step 4: cart badge = `2`; subtotal `4 980 ₽`; delivery row shows `Бесплатно` (or `0 ₽`); no more `добавьте ещё…` hint.
+| # | Assertion | Pass | Fail |
+|---|---|---|---|
+| 1 | `.scroll-decor` присутствует | есть элемент | null |
+| 2 | ≥5 `[data-parallax]` | true | false |
+| 3 | 3 `.sd-floater` | true | false |
+| 4 | pom transform ty ≈ -144 ±10 px после scrollY=800 | pass | 0 или другое |
+| 5 | khach ty ≈ -224, wheat ty ≈ -280 (разные!) | pass | все 0 или равны |
+| 6 | После скролла к каталогу первые 6 карточек получили `.is-inview` | true | false |
+| 7 | transitionDelay 1-й карточки "0ms", 6-й — "350ms" | pass | обе "" |
+| 8 | `.orn-div.is-inview` после скролла к разделителю | true | false |
+| 9 | `stroke-dashoffset` орнамента после reveal = 0 | pass | 420 |
+| 10 | Разные delays у 6 hero-элементов | pass | все одинаковые |
+| 11 | Хачкар скрыт на 390 px ширине | display:none | viewable |
+| 12 | Регресс: корзина, порог 3 500 ₽, чекаут работают | pass | fail |
 
-A broken threshold (e.g. still comparing to old value, or reversed boolean) would show `390 ₽` at 4 980 ₽ or `Бесплатно` at 2 490 ₽ — both visibly distinct.
+## Recording
+Одна непрерывная запись десктопной прокрутки (сверху до футера) + короткий проезд в обратную сторону + быстрый мобильный snapshot + регресс корзины. Аннотации `setup`/`test_start`/`assertion` помечают каждую проверку.
 
----
+## Would this look identical if broken?
+- Если `useReveal` не вызвался — все карточки/hero остались бы на opacity:0 (пустая страница) → видно невооружённым глазом ⇒ **нет**.
+- Если parallax не работал — все `.sd-shape` стояли бы неподвижно; ассерты 4-5 поймают разные/нулевые transform ⇒ **нет**.
+- Если stagger сломан — все карточки появятся одним ударом, ассерт 7 поймает пустые `transitionDelay` ⇒ **нет**.
+- Если OrnamentDivider не reveal'ится — stroke-dashoffset останется 420 (невидимая линия), ассерт 9 поймает ⇒ **нет**.
 
-## Test 4 — Checkout success screen
-
-Steps:
-1. With cart containing items (from Test 3, 4 980 ₽), click **«Оформить заказ»** button in cart.
-2. Fill the checkout form with test values:
-   - Имя: `Тест Тестов`
-   - Телефон: `+7 999 123 45 67`
-   - Адрес: `Москва, Тверская 18`
-3. Click submit button («Оформить» / «Подтвердить»).
-
-Assertions:
-- Success screen appears with heading containing `Շնորհակալություն` (Armenian "thank you").
-- Body text contains a line matching regex `Заказ №\d{5} принят` — 5-digit order number.
-- Cart badge resets to `0` after dismissing the success screen.
-
-A broken checkout handler (missing reducer case, throw, etc.) would produce either no screen change, a stuck modal, or a different number format.
-
----
-
-## Test 5 — Mobile regression (390×844)
-
-Steps:
-1. Open Chrome DevTools → toggle device toolbar → set viewport to 390×844 (iPhone 14 Pro).
-2. Reload page.
-3. Observe header and CategoryStrip.
-
-Assertions:
-- Desktop nav links («Каталог», «О нас», «Доставка», «Контакты») are hidden.
-- Hamburger button OR cart button (compact mode) is visible in header.
-- CategoryStrip is visible and **horizontally scrollable** — user can drag or scroll horizontally through all 8 category cards.
-- Catalog grid collapses to 1 column (each product card spans full width).
-
-A broken responsive rule would either leave desktop nav visible at mobile width or collapse CategoryStrip into a broken vertical stack.
-
----
-
-## Out of scope (not tested)
-
-- Visual subjective approval (taste) — that's for the user to review via screenshots.
-- Search input filtering — not changed in this PR, skipping.
-- Footer newsletter form — cosmetic only, skipping.
-- All 25 products loading — implicit via Test 2 (3 wine items proves data + filter work).
-
-## Recording plan
-
-One continuous recording covering Tests 1 → 4 on desktop, then switch to mobile DevTools for Test 5. Use structured `record_annotate` at each `test_start`/`assertion`.
+Т.е. все тесты различают работающую/сломанную реализацию.

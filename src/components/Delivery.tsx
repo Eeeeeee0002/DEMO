@@ -10,7 +10,7 @@ export function Delivery() {
               🚴
             </span>
             <div>
-              <strong>90 мин по Москве</strong>
+              <strong>90 мин по Петербургу</strong>
               <span>Курьер в термосумке</span>
             </div>
           </div>
@@ -20,7 +20,7 @@ export function Delivery() {
             </span>
             <div>
               <strong>Бесплатно от 3 500&nbsp;₽</strong>
-              <span>Иначе 390&nbsp;₽ по Москве</span>
+              <span>Иначе 390&nbsp;₽ по Петербургу</span>
             </div>
           </div>
           <div className="delivery__item" data-reveal data-reveal-delay="200">

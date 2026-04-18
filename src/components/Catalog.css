@@ -64,6 +64,17 @@
   gap: 16px;
 }
 
+/* Reveal wrapper must render a real box (not display:contents) so that
+   opacity/transform from [data-reveal] actually animate. Fill the grid cell. */
+.pcard-reveal {
+  display: flex;
+  min-width: 0;
+}
+.pcard-reveal > .pcard {
+  flex: 1;
+  min-width: 0;
+}
+
 .catalog__empty {
   text-align: center;
   padding: 60px 20px;
