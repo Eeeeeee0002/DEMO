@@ -51,14 +51,159 @@ export function ScrollDecor() {
 
   return (
     <div className="scroll-decor" ref={layerRef} aria-hidden>
-      {/* Живое фото гранатового дерева справа — аккуратно вписанный фон */}
-      <div
-        className="sd-shape sd-shape--tree-photo"
+      {/* Тандыр с лавашем — анимированный силуэт в тоне сайта */}
+      <svg
+        className="sd-shape sd-shape--tandir"
         data-parallax="0.12"
-        style={{ top: '-6%', right: '-6%' }}
+        viewBox="0 0 360 460"
+        style={{ top: '2%', right: '-4%' }}
       >
-        <img src="/img/pomegranate-tree.jpg" alt="" aria-hidden draggable={false} />
-      </div>
+        <defs>
+          <linearGradient id="td-body" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="rgba(95, 17, 36, 0.30)" />
+            <stop offset="60%" stopColor="rgba(65, 12, 24, 0.42)" />
+            <stop offset="100%" stopColor="rgba(42, 6, 16, 0.50)" />
+          </linearGradient>
+          <radialGradient id="td-glow" cx="50%" cy="40%" r="55%">
+            <stop offset="0%" stopColor="rgba(240, 186, 95, 0.42)" />
+            <stop offset="70%" stopColor="rgba(197, 158, 69, 0.08)" />
+            <stop offset="100%" stopColor="rgba(197, 158, 69, 0)" />
+          </radialGradient>
+          <linearGradient id="td-flame" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stopColor="rgba(214, 90, 40, 0.85)" />
+            <stop offset="55%" stopColor="rgba(240, 186, 95, 0.8)" />
+            <stop offset="100%" stopColor="rgba(255, 230, 170, 0.3)" />
+          </linearGradient>
+          <linearGradient id="td-lavash" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="rgba(230, 190, 120, 0.85)" />
+            <stop offset="100%" stopColor="rgba(185, 130, 70, 0.85)" />
+          </linearGradient>
+        </defs>
+
+        {/* Мягкая тёплая подсветка от горла тандыра */}
+        <ellipse cx="180" cy="145" rx="155" ry="85" fill="url(#td-glow)" className="td-halo" />
+
+        {/* Дымки, поднимающиеся из горла */}
+        <g className="td-smoke">
+          <path className="td-smoke-1"
+            d="M150 60 C 146 40, 154 30, 150 10 C 148 -6, 156 -14, 154 -32"
+            stroke="rgba(95, 17, 36, 0.20)" strokeWidth="6" fill="none" strokeLinecap="round" />
+          <path className="td-smoke-2"
+            d="M190 70 C 194 50, 186 40, 192 22 C 196 6, 188 -4, 192 -22"
+            stroke="rgba(95, 17, 36, 0.18)" strokeWidth="5" fill="none" strokeLinecap="round" />
+          <path className="td-smoke-3"
+            d="M220 80 C 218 62, 224 52, 220 36 C 218 20, 224 10, 222 -6"
+            stroke="rgba(95, 17, 36, 0.14)" strokeWidth="4" fill="none" strokeLinecap="round" />
+        </g>
+
+        {/* Корпус тандыра — купол с широкой юбкой */}
+        <g>
+          {/* Основание-постамент */}
+          <ellipse cx="180" cy="430" rx="150" ry="18" fill="rgba(42, 6, 16, 0.32)" />
+          <path
+            d="M60 430
+               C 50 390, 60 360, 72 320
+               C 80 280, 78 230, 88 200
+               C 94 180, 100 170, 118 164
+               L 242 164
+               C 260 170, 266 180, 272 200
+               C 282 230, 280 280, 288 320
+               C 300 360, 310 390, 300 430 Z"
+            fill="url(#td-body)"
+          />
+          {/* Вертикальные полосы кладки */}
+          <g stroke="rgba(42, 6, 16, 0.22)" strokeWidth="0.8" fill="none" strokeLinecap="round">
+            <path d="M100 200 C 96 270, 92 340, 92 420" />
+            <path d="M140 190 C 138 270, 136 340, 134 420" />
+            <path d="M180 186 L 180 420" />
+            <path d="M220 190 C 222 270, 224 340, 226 420" />
+            <path d="M260 200 C 264 270, 268 340, 268 420" />
+          </g>
+          {/* Горизонтальные ободы */}
+          <g stroke="rgba(42, 6, 16, 0.28)" strokeWidth="1.2" fill="none">
+            <path d="M80 260 C 140 268, 220 268, 280 260" />
+            <path d="M74 340 C 140 348, 220 348, 286 340" />
+            <path d="M70 410 C 140 418, 220 418, 290 410" />
+          </g>
+          {/* Горло — эллипс сверху */}
+          <ellipse cx="180" cy="164" rx="62" ry="18" fill="rgba(20, 4, 8, 0.58)" />
+          <ellipse cx="180" cy="162" rx="62" ry="18" fill="none"
+                   stroke="rgba(197, 158, 69, 0.45)" strokeWidth="1.4" />
+          {/* Тёплый отсвет изнутри горла */}
+          <ellipse cx="180" cy="167" rx="52" ry="12" fill="url(#td-glow)" className="td-mouth-glow" />
+        </g>
+
+        {/* Пламя внутри тандыра — мерцает */}
+        <g className="td-flames">
+          <path className="td-flame td-flame-1"
+            d="M150 400 C 146 370, 154 350, 148 320 C 142 295, 156 280, 152 250 C 150 235, 160 225, 156 210"
+            stroke="url(#td-flame)" strokeWidth="5" fill="none" strokeLinecap="round" />
+          <path className="td-flame td-flame-2"
+            d="M180 410 C 186 380, 176 360, 184 330 C 190 305, 178 290, 184 260 C 188 240, 180 225, 184 210"
+            stroke="url(#td-flame)" strokeWidth="6" fill="none" strokeLinecap="round" />
+          <path className="td-flame td-flame-3"
+            d="M212 400 C 216 370, 208 350, 214 320 C 218 295, 208 280, 214 250 C 218 235, 210 225, 214 210"
+            stroke="url(#td-flame)" strokeWidth="5" fill="none" strokeLinecap="round" />
+        </g>
+
+        {/* Лаваши на стенках тандыра — по очереди «надуваются» и зарумяниваются */}
+        <g className="td-lavashes">
+          {/* Лаваш слева */}
+          <g className="td-lavash td-lavash-1">
+            <path
+              d="M96 240 C 92 220, 100 200, 118 196
+                 C 130 194, 138 208, 136 228
+                 C 134 246, 124 256, 112 258
+                 C 102 258, 96 252, 96 240 Z"
+              fill="url(#td-lavash)" />
+            <path
+              d="M104 230 C 108 226, 116 224, 122 228"
+              stroke="rgba(120, 70, 30, 0.35)" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+            <path
+              d="M108 240 C 114 238, 122 238, 128 242"
+              stroke="rgba(120, 70, 30, 0.35)" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+          </g>
+          {/* Лаваш справа */}
+          <g className="td-lavash td-lavash-2">
+            <path
+              d="M264 240 C 268 220, 260 200, 242 196
+                 C 230 194, 222 208, 224 228
+                 C 226 246, 236 256, 248 258
+                 C 258 258, 264 252, 264 240 Z"
+              fill="url(#td-lavash)" />
+            <path
+              d="M256 230 C 252 226, 244 224, 238 228"
+              stroke="rgba(120, 70, 30, 0.35)" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+            <path
+              d="M252 240 C 246 238, 238 238, 232 242"
+              stroke="rgba(120, 70, 30, 0.35)" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+          </g>
+          {/* Лаваш сзади по центру — крупный */}
+          <g className="td-lavash td-lavash-3">
+            <path
+              d="M150 340 C 144 320, 156 300, 180 296
+                 C 204 300, 216 320, 210 340
+                 C 206 356, 194 364, 180 364
+                 C 166 364, 154 356, 150 340 Z"
+              fill="url(#td-lavash)" />
+            <path
+              d="M162 320 C 172 316, 188 316, 198 320"
+              stroke="rgba(120, 70, 30, 0.35)" strokeWidth="0.9" fill="none" strokeLinecap="round" />
+            <path
+              d="M160 336 C 172 334, 188 334, 200 336"
+              stroke="rgba(120, 70, 30, 0.35)" strokeWidth="0.9" fill="none" strokeLinecap="round" />
+            <path
+              d="M162 350 C 172 348, 188 348, 198 350"
+              stroke="rgba(120, 70, 30, 0.35)" strokeWidth="0.9" fill="none" strokeLinecap="round" />
+          </g>
+        </g>
+
+        {/* Деревянная лопатка над горлом */}
+        <g className="td-paddle">
+          <rect x="176" y="110" width="8" height="60" rx="2" fill="rgba(95, 60, 30, 0.55)" />
+          <ellipse cx="180" cy="108" rx="22" ry="8" fill="rgba(95, 60, 30, 0.6)" />
+        </g>
+      </svg>
       <svg
         className="sd-shape sd-shape--tree"
         data-parallax="0.14"
