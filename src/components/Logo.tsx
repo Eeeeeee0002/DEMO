@@ -90,7 +90,7 @@ export function Logo({
           />
         </g>
 
-        {/* Pomegranate body — with the bottom-right cutaway */}
+        {/* Whole pomegranate body — rich and ripe */}
         <g className="armlogo__body">
           <path
             d="M50 22
@@ -100,67 +100,56 @@ export function Logo({
                C 84 40, 72 22, 50 22 Z"
             fill={`url(#${uid}-body)`}
           />
-          {/* Subtle vertical segment lines */}
+          {/* Subtle vertical segment lines (left + right) for volume */}
           <path
-            d="M32 40 C 34 58, 36 74, 42 86"
-            stroke="rgba(20, 4, 12, 0.35)"
+            d="M30 42 C 30 60, 32 76, 40 88"
+            stroke="rgba(20, 4, 12, 0.32)"
             strokeWidth="0.7"
             fill="none"
           />
           <path
-            d="M68 40 C 66 58, 64 74, 58 86"
-            stroke="rgba(20, 4, 12, 0.35)"
+            d="M70 42 C 70 60, 68 76, 60 88"
+            stroke="rgba(20, 4, 12, 0.32)"
             strokeWidth="0.7"
             fill="none"
+          />
+          {/* Center vertical line */}
+          <path
+            d="M50 30 C 51 52, 51 72, 50 88"
+            stroke="rgba(20, 4, 12, 0.22)"
+            strokeWidth="0.5"
+            fill="none"
+          />
+          {/* Warm rim light on the right side */}
+          <path
+            d="M78 46 C 84 58, 82 72, 72 84"
+            stroke="rgba(255, 170, 150, 0.35)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            fill="none"
+            opacity="0.85"
           />
           {/* Top-left sheen */}
           <ellipse
             cx="38"
             cy="38"
-            rx="14"
-            ry="10"
+            rx="15"
+            ry="11"
             fill={`url(#${uid}-shine)`}
             opacity="0.9"
           />
-        </g>
-
-        {/* Cutaway patch revealing the pith & seeds (bottom-right lobe) */}
-        <g className="armlogo__cut">
-          <path
-            d="M54 62
-               C 68 60, 80 66, 82 76
-               C 76 86, 64 90, 52 88
-               C 48 80, 48 70, 54 62 Z"
-            fill="#f5e6c6"
-            stroke="#b28932"
-            strokeWidth="0.6"
+          {/* Small secondary highlight */}
+          <ellipse
+            cx="33"
+            cy="54"
+            rx="3"
+            ry="8"
+            fill="rgba(255, 220, 200, 0.18)"
           />
-          {/* Pith divider lines */}
-          <path
-            d="M58 66 C 64 72, 72 74, 78 76 M56 76 C 62 80, 70 82, 76 82"
-            stroke="#d9c28a"
-            strokeWidth="0.7"
-            fill="none"
-            opacity="0.7"
-          />
-
-          {/* Ruby seeds */}
-          <g className="armlogo__seeds">
-            <circle cx="61" cy="70" r="2.7" fill={`url(#${uid}-seed)`} />
-            <circle cx="67" cy="72" r="2.6" fill={`url(#${uid}-seed)`} />
-            <circle cx="73" cy="71" r="2.5" fill={`url(#${uid}-seed)`} />
-            <circle cx="64" cy="78" r="2.8" fill={`url(#${uid}-seed)`} />
-            <circle cx="70" cy="79" r="2.7" fill={`url(#${uid}-seed)`} />
-            <circle cx="75" cy="77" r="2.3" fill={`url(#${uid}-seed)`} />
-            <circle cx="61" cy="84" r="2.5" fill={`url(#${uid}-seed)`} />
-            <circle cx="68" cy="85" r="2.6" fill={`url(#${uid}-seed)`} />
-            <circle cx="74" cy="83" r="2.2" fill={`url(#${uid}-seed)`} />
-
-            {/* Highlight dots on seeds — twinkle animated */}
-            <circle className="armlogo__glint armlogo__glint--1" cx="60.3" cy="69.3" r="0.7" fill="#fff0de" />
-            <circle className="armlogo__glint armlogo__glint--2" cx="69" cy="78.5" r="0.8" fill="#fff0de" />
-            <circle className="armlogo__glint armlogo__glint--3" cx="73" cy="82.6" r="0.6" fill="#fff0de" />
-          </g>
+          {/* Animated twinkle points on the skin */}
+          <circle className="armlogo__glint armlogo__glint--1" cx="36" cy="34" r="1.1" fill="#fff3da" />
+          <circle className="armlogo__glint armlogo__glint--2" cx="44" cy="44" r="0.7" fill="#fff3da" />
+          <circle className="armlogo__glint armlogo__glint--3" cx="29" cy="62" r="0.6" fill="#fff3da" />
         </g>
 
         {/* Golden crown / calyx on top */}
