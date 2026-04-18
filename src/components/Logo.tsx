@@ -8,10 +8,9 @@ interface LogoProps {
 }
 
 /**
- * Старинный гранат в духе армянской манускриптной миниатюры.
- * Глубокий винный корпус с тонкой золотой гравировкой, сухой
- * калиx-корона, патина, мягкое тёплое свечение. Без игрушечного
- * глянца. Плавно парит, корона колышется.
+ * Реалистичный гранат в духе садовой фотографии: тёплый глянцевый
+ * красный корпус с золотистым брюшком, капли влаги, веточка с листком
+ * сверху, сухой калиx-корона внизу (сепалии веером вниз).
  */
 export function Logo({
   size = 44,
@@ -33,176 +32,191 @@ export function Logo({
         className={animated ? 'armlogo armlogo--animated' : 'armlogo'}
         width={size}
         height={size}
-        viewBox="0 0 100 100"
+        viewBox="0 0 100 120"
         fill="none"
         aria-hidden
         role="img"
       >
         <defs>
-          {/* Глубокое вино с тёмной тенью снизу — без розовой «игрушечности» */}
-          <radialGradient id={`${uid}-body`} cx="42%" cy="36%" r="78%">
-            <stop offset="0%" stopColor="#8a1730" />
-            <stop offset="40%" stopColor="#5e1022" />
-            <stop offset="75%" stopColor="#380912" />
-            <stop offset="100%" stopColor="#1a040a" />
+          {/* Корпус: сочный красный сверху → золотистый снизу → коричневая тень у калиxа */}
+          <radialGradient id={`${uid}-body`} cx="42%" cy="38%" r="72%">
+            <stop offset="0%" stopColor="#ef4a58" />
+            <stop offset="35%" stopColor="#c9243b" />
+            <stop offset="70%" stopColor="#8b1524" />
+            <stop offset="100%" stopColor="#4a0e13" />
           </radialGradient>
-          {/* Мягкая тёплая патина (не белый блик) */}
-          <radialGradient id={`${uid}-patina`} cx="34%" cy="26%" r="34%">
-            <stop offset="0%" stopColor="rgba(214, 160, 110, 0.32)" />
-            <stop offset="60%" stopColor="rgba(214, 160, 110, 0.08)" />
-            <stop offset="100%" stopColor="rgba(214, 160, 110, 0)" />
+          {/* Золотистое «брюшко» снизу — закатное солнце подсвечивает */}
+          <radialGradient id={`${uid}-belly`} cx="50%" cy="90%" r="42%">
+            <stop offset="0%" stopColor="rgba(240, 186, 95, 0.7)" />
+            <stop offset="55%" stopColor="rgba(210, 120, 62, 0.3)" />
+            <stop offset="100%" stopColor="rgba(210, 120, 62, 0)" />
           </radialGradient>
-          {/* Состаренная латунь для гравировки и калиxа */}
-          <linearGradient id={`${uid}-brass`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#e6c682" />
-            <stop offset="45%" stopColor="#b8912f" />
-            <stop offset="100%" stopColor="#5e4414" />
+          {/* Крупный глянцевый блик сверху */}
+          <radialGradient id={`${uid}-gloss`} cx="36%" cy="28%" r="28%">
+            <stop offset="0%" stopColor="rgba(255, 230, 210, 0.85)" />
+            <stop offset="70%" stopColor="rgba(255, 230, 210, 0.15)" />
+            <stop offset="100%" stopColor="rgba(255, 230, 210, 0)" />
+          </radialGradient>
+          {/* Калиx — сухие ржаво-коричневые сепалии */}
+          <linearGradient id={`${uid}-sepal`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#a0582a" />
+            <stop offset="60%" stopColor="#6e3415" />
+            <stop offset="100%" stopColor="#3a1a08" />
           </linearGradient>
+          {/* Лист */}
           <linearGradient id={`${uid}-leaf`} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#527e3b" />
-            <stop offset="100%" stopColor="#1e3f18" />
+            <stop offset="0%" stopColor="#6a9a42" />
+            <stop offset="100%" stopColor="#244a16" />
           </linearGradient>
-          {/* Тёплая кромка-ободок света справа */}
-          <linearGradient id={`${uid}-rim`} x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="rgba(214, 160, 110, 0)" />
-            <stop offset="100%" stopColor="rgba(233, 188, 125, 0.55)" />
+          {/* Веточка */}
+          <linearGradient id={`${uid}-stem`} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#6a4420" />
+            <stop offset="100%" stopColor="#2d1a08" />
           </linearGradient>
         </defs>
 
-        {/* Мягкая земляная тень */}
+        {/* Земляная тень под плодом */}
         <ellipse
           className="armlogo__shadow"
           cx="50"
-          cy="93"
-          rx="24"
-          ry="3"
-          fill="rgba(30, 4, 12, 0.32)"
+          cy="115"
+          rx="22"
+          ry="2.8"
+          fill="rgba(40, 14, 8, 0.28)"
         />
 
-        {/* Сухой листок за короной */}
+        {/* Веточка и лист — сверху, над плодом */}
         <g className="armlogo__leaf">
           <path
-            d="M64 18 C 74 10, 84 14, 82 26 C 74 28, 66 24, 64 18 Z"
-            fill={`url(#${uid}-leaf)`}
-          />
-          <path
-            d="M66 21 C 72 19, 77 19, 80 23"
-            stroke="rgba(230, 198, 130, 0.7)"
-            strokeWidth="0.7"
+            d="M50 14 C 48 10, 50 6, 54 4"
+            stroke={`url(#${uid}-stem)`}
+            strokeWidth="2.2"
             strokeLinecap="round"
             fill="none"
           />
-          {/* Штриховка прожилок */}
           <path
-            d="M70 20 L72 25 M74 19 L75 26 M77 20 L78 25"
-            stroke="rgba(20, 40, 12, 0.5)"
+            d="M54 4 C 62 0, 72 2, 74 10 C 70 14, 60 14, 54 8 Z"
+            fill={`url(#${uid}-leaf)`}
+            stroke="#1a3a0e"
             strokeWidth="0.4"
+          />
+          <path
+            d="M56 7 C 62 5, 68 5, 72 9"
+            stroke="rgba(170, 210, 130, 0.55)"
+            strokeWidth="0.6"
+            strokeLinecap="round"
             fill="none"
           />
         </g>
 
-        {/* Тело граната — благородная форма, чуть сплюснутая, без «шарика» */}
+        {/* Тело граната — слегка приплюснутая форма, как на фото */}
         <g className="armlogo__body">
           <path
-            d="M50 24
-               C 28 24, 17 42, 17 60
-               C 17 80, 34 90, 50 90
-               C 66 90, 83 80, 83 60
-               C 83 42, 72 24, 50 24 Z"
+            d="M50 18
+               C 26 18, 14 36, 14 58
+               C 14 76, 26 90, 38 94
+               C 42 94.5, 46 94.5, 50 94.5
+               C 54 94.5, 58 94.5, 62 94
+               C 74 90, 86 76, 86 58
+               C 86 36, 74 18, 50 18 Z"
             fill={`url(#${uid}-body)`}
           />
-
-          {/* Тёплая гравированная кромка света — не блик, а «сусальное золото» */}
+          {/* Золотистое «брюшко» снизу */}
           <path
-            d="M78 42 C 84 54, 84 70, 74 86"
-            stroke={`url(#${uid}-rim)`}
-            strokeWidth="1.4"
-            strokeLinecap="round"
-            fill="none"
+            d="M50 18
+               C 26 18, 14 36, 14 58
+               C 14 76, 26 90, 38 94
+               C 42 94.5, 46 94.5, 50 94.5
+               C 54 94.5, 58 94.5, 62 94
+               C 74 90, 86 76, 86 58
+               C 86 36, 74 18, 50 18 Z"
+            fill={`url(#${uid}-belly)`}
           />
-
-          {/* Манускриптная золотая гравировка — тончайшие линии сегментов */}
-          <g
-            stroke="rgba(197, 158, 69, 0.55)"
-            strokeWidth="0.55"
-            fill="none"
-            strokeLinecap="round"
-          >
-            <path d="M32 38 C 28 54, 30 72, 40 86" />
-            <path d="M68 38 C 72 54, 70 72, 60 86" />
-            <path d="M50 28 C 51 52, 51 72, 50 88" />
-            <path d="M22 58 Q 50 64, 78 58" />
-          </g>
-
-          {/* Крошечные золотые «зёрна» проступают сквозь кожу — намёк */}
-          <g fill="rgba(197, 158, 69, 0.38)">
-            <circle cx="39" cy="52" r="0.7" />
-            <circle cx="43" cy="46" r="0.6" />
-            <circle cx="47" cy="50" r="0.7" />
-            <circle cx="53" cy="47" r="0.7" />
-            <circle cx="57" cy="51" r="0.6" />
-            <circle cx="61" cy="46" r="0.7" />
-            <circle cx="41" cy="64" r="0.6" />
-            <circle cx="46" cy="62" r="0.7" />
-            <circle cx="52" cy="65" r="0.7" />
-            <circle cx="58" cy="62" r="0.6" />
-            <circle cx="63" cy="64" r="0.7" />
-            <circle cx="44" cy="74" r="0.6" />
-            <circle cx="50" cy="76" r="0.7" />
-            <circle cx="56" cy="74" r="0.6" />
-          </g>
-
-          {/* Мягкая тёплая патина сверху-слева (вместо глянца) */}
+          {/* Глянцевый блик сверху */}
           <path
-            d="M50 24
-               C 28 24, 17 42, 17 60
-               C 17 80, 34 90, 50 90
-               C 66 90, 83 80, 83 60
-               C 83 42, 72 24, 50 24 Z"
-            fill={`url(#${uid}-patina)`}
+            d="M50 18
+               C 26 18, 14 36, 14 58
+               C 14 76, 26 90, 38 94
+               C 42 94.5, 46 94.5, 50 94.5
+               C 54 94.5, 58 94.5, 62 94
+               C 74 90, 86 76, 86 58
+               C 86 36, 74 18, 50 18 Z"
+            fill={`url(#${uid}-gloss)`}
           />
-
-          {/* Мерцающие искры на поверхности */}
-          <circle className="armlogo__glint armlogo__glint--1" cx="36" cy="38" r="0.8" fill="#f5e2bb" />
-          <circle className="armlogo__glint armlogo__glint--2" cx="58" cy="56" r="0.6" fill="#f5e2bb" />
-          <circle className="armlogo__glint armlogo__glint--3" cx="42" cy="74" r="0.5" fill="#f5e2bb" />
+          {/* Тонкие вертикальные бороздки — едва заметные */}
+          <g stroke="rgba(46, 8, 12, 0.22)" strokeWidth="0.45" fill="none" strokeLinecap="round">
+            <path d="M32 34 C 28 52, 30 72, 38 90" />
+            <path d="M68 34 C 72 52, 70 72, 62 90" />
+            <path d="M50 22 C 51 52, 51 74, 50 92" />
+          </g>
+          {/* Капли влаги — крошечные глянцевые кружочки */}
+          <g>
+            {[
+              [30, 42, 1.4],
+              [40, 32, 1.1],
+              [48, 36, 0.9],
+              [54, 28, 1.3],
+              [38, 50, 0.8],
+              [60, 46, 1],
+              [42, 60, 0.9],
+              [66, 62, 1.2],
+              [52, 48, 0.7],
+              [28, 58, 1],
+              [70, 54, 0.8],
+            ].map(([x, y, r], i) => (
+              <g key={i}>
+                <circle
+                  cx={x}
+                  cy={y}
+                  r={r}
+                  fill="rgba(255, 245, 230, 0.55)"
+                />
+                <circle
+                  cx={Number(x) - Number(r) * 0.35}
+                  cy={Number(y) - Number(r) * 0.35}
+                  r={Number(r) * 0.35}
+                  fill="rgba(255, 255, 255, 0.95)"
+                />
+              </g>
+            ))}
+          </g>
+          {/* Мерцающие искры-подмигивания */}
+          <circle className="armlogo__glint armlogo__glint--1" cx="34" cy="34" r="0.9" fill="#fff" />
+          <circle className="armlogo__glint armlogo__glint--2" cx="56" cy="52" r="0.7" fill="#fff" />
+          <circle className="armlogo__glint armlogo__glint--3" cx="44" cy="68" r="0.6" fill="#fff" />
         </g>
 
-        {/* Старинный калиx — сухая чашечка с широкими сепалиями (как на миниатюрах) */}
+        {/* Калиx ВНИЗУ — сухие ржавые сепалии, раскрытые веером вниз */}
         <g className="armlogo__crown">
-          {/* Чаша-основание калиxа */}
+          {/* Чаша-основание калиxа (на «пятке» граната) */}
           <path
-            d="M38 26 C 38 20, 42 18, 50 18 C 58 18, 62 20, 62 26 C 62 29, 56 30, 50 30 C 44 30, 38 29, 38 26 Z"
-            fill={`url(#${uid}-brass)`}
-            stroke="#3a2808"
+            d="M38 92 C 38 90, 42 89, 50 89 C 58 89, 62 90, 62 92 C 62 96, 56 98, 50 98 C 44 98, 38 96, 38 92 Z"
+            fill={`url(#${uid}-sepal)`}
+            stroke="#2a1204"
             strokeWidth="0.5"
           />
-          {/* Широкие лепестки-сепалии, расходящиеся веером */}
+          {/* Сепалии — узкие острые лепестки, расходятся вниз-наружу */}
           <g
-            fill={`url(#${uid}-brass)`}
-            stroke="#3a2808"
+            fill={`url(#${uid}-sepal)`}
+            stroke="#2a1204"
             strokeWidth="0.5"
             strokeLinejoin="round"
           >
-            <path d="M40 22 C 36 14, 34 10, 36 6 C 40 10, 42 16, 44 22 Z" />
-            <path d="M44 20 C 42 12, 42 6, 44 3 C 46 8, 47 14, 48 20 Z" />
-            <path d="M50 20 C 49 12, 49 5, 50 2 C 51 5, 51 12, 50 20 Z" />
-            <path d="M56 20 C 58 12, 58 6, 56 3 C 54 8, 53 14, 52 20 Z" />
-            <path d="M60 22 C 64 14, 66 10, 64 6 C 60 10, 58 16, 56 22 Z" />
+            <path d="M40 94 C 34 100, 30 106, 28 112 C 34 108, 38 102, 42 96 Z" />
+            <path d="M44 96 C 42 104, 40 110, 40 114 C 44 110, 46 104, 48 96 Z" />
+            <path d="M50 96 C 49 104, 49 112, 50 116 C 51 112, 51 104, 50 96 Z" />
+            <path d="M56 96 C 58 104, 60 110, 60 114 C 56 110, 54 104, 52 96 Z" />
+            <path d="M60 94 C 66 100, 70 106, 72 112 C 66 108, 62 102, 58 96 Z" />
           </g>
-          {/* Тёмная «тень» внутри чаши */}
-          <ellipse cx="50" cy="26" rx="9" ry="2" fill="rgba(20, 10, 4, 0.55)" />
-          {/* Центральная гравированная бусина */}
-          <circle cx="50" cy="25" r="2.2" fill={`url(#${uid}-brass)`} stroke="#3a2808" strokeWidth="0.4" />
-          <circle cx="50" cy="25" r="0.8" fill="#3a2808" />
-          <circle cx="49.5" cy="24.5" r="0.3" fill="#f2dba4" />
-          {/* Тонкие золотые «штрихи» на сепалиях (гравировка) */}
-          <g stroke="#6d4f15" strokeWidth="0.3" fill="none" strokeLinecap="round">
-            <path d="M38 12 L40 22" />
-            <path d="M44 8 L46 20" />
-            <path d="M50 4 L50 20" />
-            <path d="M56 8 L54 20" />
-            <path d="M62 12 L60 22" />
+          {/* Глубокая тень внутри чаши */}
+          <ellipse cx="50" cy="94" rx="8" ry="1.5" fill="rgba(20, 8, 2, 0.6)" />
+          {/* Золотистые тёплые блики на сухих лепестках */}
+          <g stroke="rgba(240, 186, 95, 0.5)" strokeWidth="0.35" fill="none" strokeLinecap="round">
+            <path d="M32 104 L40 96" />
+            <path d="M42 108 L46 98" />
+            <path d="M50 112 L50 98" />
+            <path d="M58 108 L54 98" />
+            <path d="M68 104 L60 96" />
           </g>
         </g>
       </svg>

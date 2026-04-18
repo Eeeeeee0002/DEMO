@@ -14,7 +14,7 @@
   transition: opacity 0.4s ease;
 }
 .sd-shape--pom { width: 520px; height: 520px; max-width: 60vw; opacity: 0.85; }
-.sd-shape--tree { width: 360px; height: 500px; max-width: 52vw; opacity: 0.95; }
+.sd-shape--tree { width: 440px; height: 540px; max-width: 58vw; opacity: 0.9; }
 .sd-shape--khach { width: 240px; height: 320px; opacity: 0.9; }
 .sd-shape--wheat { width: 70px; height: 180px; opacity: 0.85; }
 .sd-shape--vine { width: 260px; height: 120px; opacity: 0.95; }
