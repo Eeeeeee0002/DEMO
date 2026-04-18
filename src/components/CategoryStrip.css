@@ -51,7 +51,7 @@
   background: var(--pom);
   border-color: var(--pom);
   color: var(--on-pom);
-  box-shadow: 0 6px 16px -8px rgba(167, 32, 46, 0.55);
+  box-shadow: 0 6px 16px -8px rgba(122, 19, 41, 0.55);
 }
 
 .cat-chip__ico {

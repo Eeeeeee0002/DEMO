@@ -412,7 +412,7 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(167, 32, 46, 0.18) 0%,
+    rgba(122, 19, 41, 0.18) 0%,
     transparent 70%
   );
   border: 1px solid var(--brass);

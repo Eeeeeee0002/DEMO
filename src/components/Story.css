@@ -11,7 +11,7 @@
   background:
     radial-gradient(
       ellipse at 20% 20%,
-      rgba(167, 32, 46, 0.1) 0%,
+      rgba(122, 19, 41, 0.1) 0%,
       transparent 45%
     ),
     radial-gradient(
@@ -63,7 +63,7 @@
   background:
     radial-gradient(
       ellipse at 50% 30%,
-      rgba(167, 32, 46, 0.18) 0%,
+      rgba(122, 19, 41, 0.18) 0%,
       transparent 55%
     ),
     linear-gradient(180deg, #f4d9c1 0%, #e7bfa0 100%);

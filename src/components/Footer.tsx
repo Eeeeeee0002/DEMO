@@ -1,4 +1,4 @@
-import { Pomegranate } from './Pomegranate';
+import { Logo } from './Logo';
 import { Ornament } from './Ornament';
 import './Footer.css';
 
@@ -11,7 +11,7 @@ export function Footer() {
       <div className="container footer__grid">
         <div className="footer__brand">
           <div className="footer__brand-top">
-            <Pomegranate size={52} />
+            <Logo size={56} />
             <div>
               <strong>Arm Market</strong>
               <span>Армянские продукты</span>
@@ -45,9 +45,6 @@ export function Footer() {
             </li>
             <li>
               <a href="#delivery">Доставка и оплата</a>
-            </li>
-            <li>
-              <a href="#story">О нас</a>
             </li>
             <li>
               <a href="#">Подарочные наборы</a>

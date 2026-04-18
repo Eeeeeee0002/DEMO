@@ -6,11 +6,11 @@
   --surface-2: #f0e2c0;
   --surface-3: #e6d2a7;
 
-  /* Armenian pomegranate accents */
-  --pom-deep: #5a0f18;
-  --pom: #a7202e;
-  --pom-bright: #c6283a;
-  --pom-glow: rgba(167, 32, 46, 0.30);
+  /* Burgundy / бордовый — deep Armenian wine tone */
+  --pom-deep: #3d0a14;
+  --pom: #7a1329;
+  --pom-bright: #9b1b36;
+  --pom-glow: rgba(122, 19, 41, 0.32);
 
   /* Brass / warm gold (deepened for light bg) */
   --brass: #8a6a34;
@@ -70,7 +70,7 @@ body {
   background-image:
     radial-gradient(
       ellipse at 12% 0%,
-      rgba(167, 32, 46, 0.10) 0%,
+      rgba(122, 19, 41, 0.10) 0%,
       transparent 45%
     ),
     radial-gradient(
@@ -195,7 +195,7 @@ select {
   );
   color: var(--on-pom);
   box-shadow:
-    0 14px 32px -14px rgba(167, 32, 46, 0.45),
+    0 14px 32px -14px rgba(122, 19, 41, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -203,7 +203,7 @@ select {
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 20px 46px -14px rgba(167, 32, 46, 0.6),
+    0 20px 46px -14px rgba(122, 19, 41, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 

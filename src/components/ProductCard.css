@@ -51,7 +51,7 @@
   background: var(--pom);
   color: var(--on-pom);
   border-radius: 6px;
-  box-shadow: 0 4px 10px -4px rgba(167, 32, 46, 0.55);
+  box-shadow: 0 4px 10px -4px rgba(122, 19, 41, 0.55);
 }
 
 .pcard__body {
@@ -133,7 +133,7 @@
   align-items: center;
   justify-content: center;
   transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
-  box-shadow: 0 6px 14px -6px rgba(167, 32, 46, 0.55);
+  box-shadow: 0 6px 14px -6px rgba(122, 19, 41, 0.55);
   flex-shrink: 0;
   font-family: inherit;
 }
@@ -153,7 +153,7 @@
   color: var(--on-pom);
   border-radius: 999px;
   padding: 2px;
-  box-shadow: 0 6px 14px -6px rgba(167, 32, 46, 0.55);
+  box-shadow: 0 6px 14px -6px rgba(122, 19, 41, 0.55);
   flex-shrink: 0;
 }
 .pcard__qty button {

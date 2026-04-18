@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { Pomegranate } from './Pomegranate';
+import { Logo } from './Logo';
 import './Header.css';
 
 interface HeaderProps {
@@ -30,7 +30,7 @@ export function Header({ onOpenCart }: HeaderProps) {
       <div className="container site-header__inner">
         <a href="#top" className="brand" aria-label="Arm Market — главная">
           <span className="brand__mark">
-            <Pomegranate size={44} />
+            <Logo size={48} />
           </span>
           <span className="brand__text">
             <span className="brand__name">Arm Market</span>

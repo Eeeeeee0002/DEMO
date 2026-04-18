@@ -2,7 +2,7 @@
   position: relative;
   padding: clamp(20px, 3vw, 32px) 0 clamp(24px, 3vw, 40px);
   background:
-    radial-gradient(circle at 85% 20%, rgba(167, 32, 46, 0.12), transparent 55%),
+    radial-gradient(circle at 85% 20%, rgba(122, 19, 41, 0.12), transparent 55%),
     radial-gradient(circle at 10% 80%, rgba(138, 106, 52, 0.10), transparent 60%),
     linear-gradient(180deg, #fbf3dc 0%, #f4ead4 100%);
   overflow: hidden;
@@ -28,12 +28,12 @@
   gap: 8px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(167, 32, 46, 0.08);
+  background: rgba(122, 19, 41, 0.08);
   color: var(--pom);
   font-weight: 600;
   font-size: 13px;
   align-self: flex-start;
-  border: 1px solid rgba(167, 32, 46, 0.18);
+  border: 1px solid rgba(122, 19, 41, 0.18);
 }
 .hero__dot {
   width: 8px;
@@ -146,7 +146,7 @@
   min-height: 280px;
 }
 .hero__pom {
-  filter: drop-shadow(0 20px 40px rgba(167, 32, 46, 0.35));
+  filter: drop-shadow(0 20px 40px rgba(122, 19, 41, 0.35));
   animation: heroFloat 6s ease-in-out infinite;
 }
 .hero__pom--sm {
