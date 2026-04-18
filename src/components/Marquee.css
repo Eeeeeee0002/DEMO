@@ -1,79 +1,58 @@
 .marquee {
-  position: relative;
-  padding: 1.4rem 0;
-  background: linear-gradient(
-    135deg,
-    var(--burgundy-900),
-    var(--burgundy-700) 60%,
-    var(--burgundy-500)
-  );
-  color: var(--cream);
   overflow: hidden;
-  border-top: 1px solid rgba(212, 166, 74, 0.3);
-  border-bottom: 1px solid rgba(212, 166, 74, 0.3);
-}
-
-.marquee::before,
-.marquee::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 120px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.marquee::before {
-  left: 0;
-  background: linear-gradient(to right, var(--burgundy-900), transparent);
-}
-
-.marquee::after {
-  right: 0;
-  background: linear-gradient(to left, var(--burgundy-900), transparent);
+  padding: 1.3rem 0;
+  background: linear-gradient(
+    90deg,
+    #050302 0%,
+    var(--bg-raised) 50%,
+    #050302 100%
+  );
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
 
 .marquee__track {
   display: flex;
+  align-items: center;
   gap: 3rem;
   width: max-content;
-  animation: marquee 40s linear infinite;
+  animation: marquee 42s linear infinite;
 }
 
 .marquee__item {
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.7rem;
   font-family: var(--serif);
-  font-size: 1.3rem;
-  color: var(--cream);
+  color: var(--bone);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
   white-space: nowrap;
 }
 
 .marquee__item em {
   font-family: var(--serif-arm);
-  color: var(--gold);
   font-style: italic;
-  font-size: 1.1rem;
+  color: var(--pom-bright);
+  opacity: 0.85;
 }
 
 .marquee__dot {
-  color: var(--gold);
-  font-size: 1rem;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee__track {
-    animation: none;
-  }
+  color: var(--brass-bright);
+  font-size: 0.75rem;
+  opacity: 0.8;
 }

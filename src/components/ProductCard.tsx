@@ -1,72 +1,121 @@
 import { useCart } from '../context/CartContext';
 import type { Product } from '../types';
+import { illustrationMap } from './illustrations';
 import './ProductCard.css';
 
-export function ProductCard({ product }: { product: Product }) {
+interface Props {
+  product: Product;
+  variant?: 'standard' | 'featured' | 'wide';
+}
+
+export function ProductCard({ product, variant = 'standard' }: Props) {
   const { add, items, inc, dec } = useCart();
   const inCart = items.find((i) => i.product.id === product.id);
+  const Illustration = illustrationMap[product.id];
 
   return (
     <article
-      className={`product-card product-card--${product.accent ?? 'burgundy'}`}
+      className={`pcard pcard--${variant} pcard--${product.accent ?? 'burgundy'}`}
     >
-      {product.tag && <span className="product-card__tag">{product.tag}</span>}
-
-      <div className="product-card__visual" aria-hidden>
-        <div className="product-card__emoji">{product.emoji}</div>
-        <div className="product-card__pattern" />
+      <div className="pcard__visual" aria-hidden>
+        {Illustration ? (
+          <Illustration className="pcard__ill" />
+        ) : (
+          <div className="pcard__ill-fallback">{product.emoji}</div>
+        )}
+        <div className="pcard__visual-glow" />
+        <svg className="pcard__corner" viewBox="0 0 24 24" aria-hidden>
+          <path
+            d="M0 0h24M0 0v24M24 0l-6 6M0 24l6-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+        </svg>
       </div>
 
-      <div className="product-card__body">
-        <div className="product-card__titles">
-          <h3>{product.name}</h3>
-          {product.nameArm && (
-            <span className="product-card__arm">{product.nameArm}</span>
-          )}
-        </div>
-        <p className="product-card__desc">{product.description}</p>
+      {product.tag && (
+        <span className="pcard__tag">
+          <span className="pcard__tag-dot" />
+          {product.tag}
+        </span>
+      )}
 
-        {product.rating !== undefined && (
-          <div className="product-card__rating" aria-label={`Рейтинг ${product.rating}`}>
-            <span>★</span>
-            <strong>{product.rating.toFixed(1)}</strong>
-          </div>
+      <div className="pcard__body">
+        {product.origin && (
+          <span className="pcard__origin">
+            <span aria-hidden>⟡</span> {product.origin}
+          </span>
         )}
 
-        <div className="product-card__footer">
-          <div className="product-card__price">
+        <div className="pcard__titles">
+          <h3 className="pcard__title">{product.name}</h3>
+          {product.nameArm && (
+            <span className="pcard__arm">{product.nameArm}</span>
+          )}
+        </div>
+
+        <p className="pcard__desc">{product.description}</p>
+
+        <div className="pcard__footer">
+          <div className="pcard__price">
             <strong>{product.price.toLocaleString('ru-RU')}</strong>
-            <span>₽ / {product.unit}</span>
+            <span>
+              ₽<em>/ {product.unit}</em>
+            </span>
           </div>
 
-          {inCart ? (
-            <div className="product-card__qty" role="group" aria-label="Количество">
+          <div className="pcard__meta-row">
+            {product.rating !== undefined && (
+              <div
+                className="pcard__rating"
+                aria-label={`Рейтинг ${product.rating}`}
+              >
+                <span aria-hidden>★</span>
+                <strong>{product.rating.toFixed(1)}</strong>
+              </div>
+            )}
+
+            {inCart ? (
+              <div
+                className="pcard__qty"
+                role="group"
+                aria-label="Количество"
+              >
+                <button
+                  type="button"
+                  onClick={() => dec(product.id)}
+                  aria-label="Убрать один"
+                >
+                  −
+                </button>
+                <span>{inCart.quantity}</span>
+                <button
+                  type="button"
+                  onClick={() => inc(product.id)}
+                  aria-label="Добавить один"
+                >
+                  +
+                </button>
+              </div>
+            ) : (
               <button
                 type="button"
-                onClick={() => dec(product.id)}
-                aria-label="Убрать один"
+                className="pcard__add"
+                onClick={() => add(product)}
               >
-                −
+                <span>В корзину</span>
+                <svg viewBox="0 0 14 14" aria-hidden>
+                  <path
+                    d="M1 7h12M7 1v12"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                  />
+                </svg>
               </button>
-              <span>{inCart.quantity}</span>
-              <button
-                type="button"
-                onClick={() => inc(product.id)}
-                aria-label="Добавить один"
-              >
-                +
-              </button>
-            </div>
-          ) : (
-            <button
-              type="button"
-              className="product-card__add"
-              onClick={() => add(product)}
-            >
-              В корзину
-              <span aria-hidden>+</span>
-            </button>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </article>

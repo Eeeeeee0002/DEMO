@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="footer" id="contacts">
       <div className="footer__ornament" aria-hidden>
-        <Ornament width={260} color="var(--gold)" />
+        <Ornament width={260} color="var(--brass)" />
       </div>
       <div className="container footer__grid">
         <div className="footer__brand">

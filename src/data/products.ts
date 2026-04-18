@@ -20,7 +20,7 @@ export const categories: {
 export const products: Product[] = [
   {
     id: 'lavash-classic',
-    name: 'Лаваш традиционный',
+    name: 'Лаваш из тандыра',
     nameArm: 'Լավաշ',
     category: 'bread',
     price: 180,
@@ -31,6 +31,8 @@ export const products: Product[] = [
     accent: 'gold',
     tag: 'Хит',
     rating: 4.9,
+    featured: true,
+    origin: 'Ереван',
   },
   {
     id: 'gata',
@@ -60,7 +62,7 @@ export const products: Product[] = [
   },
   {
     id: 'basturma',
-    name: 'Бастурма',
+    name: 'Бастурма выдержанная',
     nameArm: 'Բաստուրմա',
     category: 'meat',
     price: 1890,
@@ -71,6 +73,8 @@ export const products: Product[] = [
     accent: 'burgundy',
     tag: 'Премиум',
     rating: 5.0,
+    featured: true,
+    origin: 'Гюмри',
   },
   {
     id: 'sujuk',
@@ -177,7 +181,7 @@ export const products: Product[] = [
   },
   {
     id: 'pomegranate-juice',
-    name: 'Гранатовый сок',
+    name: 'Гранатовый сок Ачик-Дона',
     nameArm: 'Նռան հյութ',
     category: 'drinks',
     price: 540,
@@ -188,6 +192,8 @@ export const products: Product[] = [
     accent: 'pomegranate',
     tag: 'Бестселлер',
     rating: 5.0,
+    featured: true,
+    origin: 'Арарат',
   },
   {
     id: 'tarkhun',
@@ -227,6 +233,8 @@ export const products: Product[] = [
     accent: 'burgundy',
     tag: 'Рекомендуем',
     rating: 4.9,
+    featured: true,
+    origin: 'Вайоц Дзор',
   },
   {
     id: 'ararat-5',

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { categories, products } from '../data/products';
 import type { Category } from '../types';
 import { ProductCard } from './ProductCard';
+import { CatIcon } from './illustrations';
 import './Catalog.css';
 
 type Filter = Category | 'all';
@@ -109,8 +110,14 @@ export function Catalog() {
                 className={`catalog__tab ${filter === c.id ? 'is-active' : ''}`}
                 onClick={() => setFilter(c.id)}
               >
-                <span className="catalog__tab-emoji" aria-hidden>
-                  {c.emoji}
+                <span className="catalog__tab-ico" aria-hidden>
+                  {c.id === 'all' ? (
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 3l2.5 6 6.5.8-5 4.4 1.6 6.4L12 17.4 6.4 20.6 8 14.2l-5-4.4 6.5-.8z" />
+                    </svg>
+                  ) : (
+                    <CatIcon id={c.id as string} width={18} height={18} />
+                  )}
                 </span>
                 <span>{c.label}</span>
                 {c.labelArm && (
@@ -136,8 +143,16 @@ export function Catalog() {
           </div>
         ) : (
           <div className="catalog__grid">
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
+            {filtered.map((p, i) => (
+              <ProductCard
+                key={p.id}
+                product={p}
+                variant={
+                  filter === 'all' && p.featured && (i === 0 || i === 6)
+                    ? 'featured'
+                    : 'standard'
+                }
+              />
             ))}
           </div>
         )}

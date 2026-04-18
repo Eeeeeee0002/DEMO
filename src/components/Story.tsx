@@ -16,7 +16,7 @@ export function Story() {
               <span className="story__label-text">в деле с</span>
             </div>
           </div>
-          <Cross size={80} color="var(--gold)" />
+          <Cross size={80} color="var(--brass)" />
         </aside>
 
         <div className="story__content">

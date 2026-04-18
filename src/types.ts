@@ -20,6 +20,8 @@ export interface Product {
   accent?: 'pomegranate' | 'gold' | 'leaf' | 'burgundy';
   tag?: string;
   rating?: number;
+  featured?: boolean;
+  origin?: string;
 }
 
 export interface CartItem {

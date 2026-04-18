@@ -1,4 +1,5 @@
 import { categories, products } from '../data/products';
+import { CatIcon } from './illustrations';
 import './CategoryStrip.css';
 
 function scrollToCatalog(hash: string) {
@@ -20,10 +21,14 @@ export function CategoryStrip() {
     <section className="cat-strip" aria-label="Категории каталога">
       <div className="container cat-strip__wrap">
         <div className="cat-strip__head">
-          <span className="cat-strip__eyebrow">Каталог</span>
-          <h2 className="cat-strip__title">
-            {products.length}+ позиций от армянских фермеров
-          </h2>
+          <div>
+            <span className="eyebrow">Каталог · Ծաղկեփունջ</span>
+            <h2 className="cat-strip__title">
+              <span>{products.length} позиций,</span>
+              <br />
+              <em>собранных у&nbsp;армянских мастеров</em>
+            </h2>
+          </div>
           <button
             type="button"
             className="cat-strip__all"
@@ -36,23 +41,27 @@ export function CategoryStrip() {
         <div className="cat-strip__scroller">
           {categories
             .filter((c) => c.id !== 'all')
-            .map((c) => (
+            .map((c, i) => (
               <button
                 key={c.id}
                 type="button"
                 className={`cat-strip__card cat-strip__card--${c.id}`}
                 onClick={() => scrollToCatalog(`#cat-${c.id}`)}
               >
-                <span className="cat-strip__emoji" aria-hidden>
-                  {c.emoji}
+                <span className="cat-strip__num">{String(i + 1).padStart(2, '0')}</span>
+                <span className="cat-strip__icon" aria-hidden>
+                  <CatIcon id={c.id as string} />
                 </span>
-                <span className="cat-strip__label">{c.label}</span>
-                {c.labelArm && (
-                  <em className="cat-strip__arm">{c.labelArm}</em>
-                )}
+                <span className="cat-strip__labels">
+                  <span className="cat-strip__label">{c.label}</span>
+                  {c.labelArm && (
+                    <em className="cat-strip__arm">{c.labelArm}</em>
+                  )}
+                </span>
                 <span className="cat-strip__count">
                   {countByCat.get(c.id) ?? 0} позиций
                 </span>
+                <span className="cat-strip__arrow" aria-hidden>→</span>
               </button>
             ))}
         </div>
