@@ -1,0 +1,60 @@
+.orn-div {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  margin: 48px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.orn-div__svg {
+  display: block;
+  width: 100%;
+  height: 48px;
+  overflow: visible;
+}
+
+.orn-path {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  transition: stroke-dashoffset 1.6s ease-out;
+}
+.orn-div.is-inview .orn-path { stroke-dashoffset: 0; }
+
+.orn-medal {
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(0.2) rotate(-90deg);
+  transition: opacity 0.7s ease 0.9s, transform 0.8s cubic-bezier(0.2, 1, 0.3, 1) 0.9s;
+  transform-box: fill-box;
+}
+.orn-div.is-inview .orn-medal {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.orn-dot {
+  opacity: 0;
+  transition: opacity 0.5s ease 1.3s;
+}
+.orn-div.is-inview .orn-dot { opacity: 1; }
+
+.orn-div__label {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--serif);
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--brass);
+  opacity: 0;
+  transition: opacity 0.5s ease 1.2s;
+}
+.orn-div.is-inview .orn-div__label { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .orn-path { stroke-dashoffset: 0; transition: none; }
+  .orn-medal,
+  .orn-dot,
+  .orn-div__label { opacity: 1; transform: none; transition: none; }
+}

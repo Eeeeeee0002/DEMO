@@ -113,8 +113,16 @@ export function Catalog() {
           </div>
         ) : (
           <div className="catalog__grid">
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
+            {filtered.map((p, i) => (
+              <div
+                key={p.id}
+                data-reveal
+                data-reveal-variant="zoom"
+                data-reveal-delay={String(Math.min(i, 10) * 70)}
+                style={{ display: 'contents' }}
+              >
+                <ProductCard product={p} />
+              </div>
             ))}
           </div>
         )}

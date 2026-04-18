@@ -28,18 +28,18 @@ export function Hero() {
     <section className="hero" id="top">
       <div className="container hero__wrap">
         <div className="hero__content">
-          <span className="hero__eyebrow">
+          <span className="hero__eyebrow" data-reveal data-reveal-variant="left">
             <span className="hero__dot" /> Доставка из Еревана за 90 минут
           </span>
-          <h1 className="hero__title">
+          <h1 className="hero__title" data-reveal data-reveal-variant="left" data-reveal-delay="80">
             Армянские продукты — <em>к вашему столу</em>
           </h1>
-          <p className="hero__lead">
+          <p className="hero__lead" data-reveal data-reveal-variant="left" data-reveal-delay="180">
             Лаваш, сыры, бастурма, вина Арени и гранатовый соус. Собираем заказ
             от армянских фермеров и привозим в термосумке.
           </p>
 
-          <form className="hero__search" onSubmit={onSubmit} role="search">
+          <form className="hero__search" onSubmit={onSubmit} role="search" data-reveal data-reveal-delay="260">
             <svg
               aria-hidden
               viewBox="0 0 24 24"
@@ -73,7 +73,7 @@ export function Hero() {
             </button>
           </form>
 
-          <div className="hero__badges">
+          <div className="hero__badges" data-reveal data-reveal-delay="360">
             <span className="hero__badge">
               <span aria-hidden>🚴</span> Бесплатно от 3 500 ₽
             </span>
@@ -86,7 +86,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero__visual" aria-hidden>
+        <div className="hero__visual" aria-hidden data-reveal data-reveal-variant="zoom" data-reveal-delay="120">
           <div className="hero__halo" />
           <div className="hero__mark">
             <Logo size={300} />
