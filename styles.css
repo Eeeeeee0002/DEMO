@@ -176,7 +176,11 @@ p{margin:0 0 1em}
 .ing:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:var(--gold)}
 .ing__ico{width:56px; height:56px; border-radius:50%; background:var(--cream); display:grid; place-items:center; border:1px solid var(--line)}
 .ing h3{margin:4px 0 0}
+.ing h3 b{color:var(--green)}
+.ing__jp{display:block; font-family:var(--f-body); font-weight:400; font-size:12px; letter-spacing:.04em; color:var(--ink-muted); margin-top:4px}
 .ing p{color:var(--ink-muted); margin:0; font-size:15px}
+
+.brand__col{font-family:var(--f-display); font-style:normal; color:var(--gold); margin:0 .02em}
 @media (max-width: 860px){ .ing__grid{grid-template-columns:repeat(2,1fr)} }
 @media (max-width: 520px){ .ing__grid{grid-template-columns:1fr} }
 

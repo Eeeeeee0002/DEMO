@@ -114,9 +114,9 @@ document.addEventListener("click", (e) => {
     if (!agree) { form.agree.focus(); return; }
     // Persist to localStorage as a demo queue
     try {
-      const q = JSON.parse(localStorage.getItem("follica_orders") || "[]");
+      const q = JSON.parse(localStorage.getItem("fasa_orders") || "[]");
       q.push({ name, phone, plan: form.plan.value, ts: new Date().toISOString() });
-      localStorage.setItem("follica_orders", JSON.stringify(q));
+      localStorage.setItem("fasa_orders", JSON.stringify(q));
     } catch (_) { /* ignore */ }
     form.querySelectorAll("input, select, button").forEach(el => el.setAttribute("disabled", "true"));
     if (success) success.hidden = false;
