@@ -51,12 +51,19 @@ export function ScrollDecor() {
 
   return (
     <div className="scroll-decor" ref={layerRef} aria-hidden>
-      {/* Гранатовое дерево справа — пышная крона, толстый сучковатый ствол, много плодов (в тени) */}
+      {/* Живое фото гранатового дерева справа — аккуратно вписанный фон */}
+      <div
+        className="sd-shape sd-shape--tree-photo"
+        data-parallax="0.12"
+        style={{ top: '-6%', right: '-6%' }}
+      >
+        <img src="/img/pomegranate-tree.jpg" alt="" aria-hidden draggable={false} />
+      </div>
       <svg
         className="sd-shape sd-shape--tree"
         data-parallax="0.14"
         viewBox="0 0 360 440"
-        style={{ top: '-4%', right: '-8%' }}
+        style={{ top: '-4%', right: '-8%', display: 'none' }}
       >
         {/* Мягкая подсветка-ореол за кроной */}
         <ellipse
