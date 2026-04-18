@@ -35,8 +35,9 @@ export function Hero() {
             Армянские продукты — <em>к вашему столу</em>
           </h1>
           <p className="hero__lead" data-reveal data-reveal-variant="left" data-reveal-delay="180">
-            Лаваш, сыры, бастурма, вина Арени и гранатовый соус. Собираем заказ
-            от армянских фермеров и привозим в термосумке.
+            Тёплый лаваш из тандыра, выдержанная бастурма, нежные сыры
+            и сладости с орехами в мёде. Весь вкус армянского стола — с бережной
+            доставкой в термосумке.
           </p>
 
           <form className="hero__search" onSubmit={onSubmit} role="search" data-reveal data-reveal-delay="260">
@@ -64,7 +65,7 @@ export function Hero() {
             <input
               type="search"
               value={query}
-              placeholder="Лаваш, бастурма, вино Арени…"
+              placeholder="Лаваш, бастурма, суджух, гата…"
               onChange={(e) => setQuery(e.target.value)}
               aria-label="Поиск по каталогу"
             />
