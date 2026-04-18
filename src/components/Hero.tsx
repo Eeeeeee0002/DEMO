@@ -90,7 +90,7 @@ export function Hero() {
         <div className="hero__visual" aria-hidden data-reveal data-reveal-variant="zoom" data-reveal-delay="120">
           <div className="hero__halo" />
           <div className="hero__mark">
-            <Logo size={300} />
+            <Logo size={220} />
           </div>
           <span className="hero__arm" aria-hidden>
             Արմ Մարկետ
