@@ -1,90 +1,59 @@
-/* Фото-логотип «живой гранат» в круглом кадре */
-.armlogo-photo {
+/* Живописный гранат — картинка с прозрачным фоном, без рамки */
+.armlogo-pom {
   position: relative;
   display: inline-block;
-  border-radius: 50%;
-  overflow: hidden;
   flex-shrink: 0;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.6) inset,
-    0 0 0 1px rgba(197, 158, 69, 0.55),
-    0 6px 18px rgba(60, 30, 10, 0.22),
-    0 2px 6px rgba(60, 30, 10, 0.14);
-  background: #f1e5c9;
-  isolation: isolate;
+  transform-origin: 50% 90%;
+  filter: drop-shadow(0 6px 12px rgba(60, 20, 10, 0.28))
+          drop-shadow(0 2px 4px rgba(60, 20, 10, 0.18));
 }
 
-.armlogo-photo > img {
+.armlogo-pom > img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 48%;
+  object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
 }
 
-/* Тонкая двойная золотая обводка поверх кадра */
-.armlogo-photo__ring {
-  position: absolute;
-  inset: 3px;
-  border-radius: 50%;
-  border: 1px solid rgba(234, 196, 110, 0.55);
-  box-shadow: inset 0 0 0 1px rgba(255, 245, 215, 0.18);
-  pointer-events: none;
-}
-
-/* Мягкий блик сверху-слева, чтобы кадр «жил» */
-.armlogo-photo__gloss {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background:
-    radial-gradient(120% 80% at 30% 15%, rgba(255, 245, 230, 0.22) 0%, rgba(255, 245, 230, 0) 55%),
-    radial-gradient(60% 60% at 90% 95%, rgba(40, 10, 6, 0.22) 0%, rgba(40, 10, 6, 0) 70%);
-  pointer-events: none;
-  mix-blend-mode: soft-light;
-}
-
-/* Плавное парение */
-.armlogo-photo--animated {
-  animation: armlogoPhotoFloat 6.4s ease-in-out infinite;
-  transform-origin: 50% 90%;
+.armlogo-pom--animated {
+  animation: armlogoPomFloat 6.4s ease-in-out infinite;
   will-change: transform;
 }
 
-.armlogo-photo--animated::after {
+.armlogo-pom--animated::after {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -10%;
-  width: 82%;
-  height: 10%;
+  bottom: -6%;
+  width: 70%;
+  height: 8%;
   transform: translateX(-50%);
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(50, 20, 8, 0.35) 0%, rgba(50, 20, 8, 0) 70%);
-  animation: armlogoPhotoShadow 6.4s ease-in-out infinite;
+  background: radial-gradient(ellipse at center, rgba(40, 10, 6, 0.35) 0%, rgba(40, 10, 6, 0) 70%);
+  animation: armlogoPomShadow 6.4s ease-in-out infinite;
   z-index: -1;
   pointer-events: none;
 }
 
-@keyframes armlogoPhotoFloat {
+@keyframes armlogoPomFloat {
   0%, 100% { transform: translateY(0) rotate(-1.5deg); }
-  50%      { transform: translateY(-3px) rotate(1.5deg); }
+  50%      { transform: translateY(-4px) rotate(1.5deg); }
 }
 
-@keyframes armlogoPhotoShadow {
-  0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 0.55; }
-  50%      { transform: translateX(-50%) scaleX(0.85); opacity: 0.3; }
+@keyframes armlogoPomShadow {
+  0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 0.6; }
+  50%      { transform: translateX(-50%) scaleX(0.8); opacity: 0.3; }
 }
 
-.armlogo-photo--animated:hover {
+.armlogo-pom--animated:hover {
   animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .armlogo-photo--animated,
-  .armlogo-photo--animated::after {
+  .armlogo-pom--animated,
+  .armlogo-pom--animated::after {
     animation: none;
   }
 }
