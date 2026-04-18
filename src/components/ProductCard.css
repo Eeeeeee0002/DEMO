@@ -18,7 +18,7 @@
 .pcard__visual {
   position: relative;
   aspect-ratio: 1 / 1;
-  background: linear-gradient(160deg, #fbf3dc, #f0e2c0);
+  background: linear-gradient(160deg, #f6dfc8, #e8bd9f);
   display: flex;
   align-items: center;
   justify-content: center;

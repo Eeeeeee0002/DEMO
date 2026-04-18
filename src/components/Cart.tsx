@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { Pomegranate } from './Pomegranate';
+import { Logo } from './Logo';
 import './Cart.css';
 
 interface CartProps {
@@ -82,7 +82,7 @@ export function Cart({ open, onClose }: CartProps) {
 
         {items.length === 0 ? (
           <div className="cart__empty">
-            <Pomegranate size={120} />
+            <Logo size={104} />
             <p>Добавьте лаваш, бастурму или гранатовый сок — и мы привезём.</p>
             <button type="button" className="btn btn-ghost" onClick={onClose}>
               В каталог
@@ -198,7 +198,7 @@ export function Cart({ open, onClose }: CartProps) {
             {orderDone ? (
               <div className="checkout__done">
                 <div className="checkout__done-circle">
-                  <Pomegranate size={90} open />
+                  <Logo size={84} />
                 </div>
                 <span className="eyebrow">Շնորհակալություն!</span>
                 <h3>Спасибо, {form.name || 'дорогой гость'}!</h3>

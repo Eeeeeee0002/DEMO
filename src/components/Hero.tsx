@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Pomegranate } from './Pomegranate';
+import { Logo } from './Logo';
 import './Hero.css';
 
 export function Hero() {
@@ -87,12 +87,15 @@ export function Hero() {
         </div>
 
         <div className="hero__visual" aria-hidden>
-          <div className="hero__pom">
-            <Pomegranate size={260} open />
+          <div className="hero__mark">
+            <Logo size={280} />
           </div>
-          <div className="hero__pom hero__pom--sm">
-            <Pomegranate size={140} />
+          <div className="hero__mark hero__mark--sm">
+            <Logo size={128} />
           </div>
+          <span className="hero__arm" aria-hidden>
+            Արմ Մարկետ
+          </span>
         </div>
       </div>
     </section>

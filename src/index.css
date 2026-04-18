@@ -1,10 +1,11 @@
 :root {
-  /* Warm parchment base (armenian tufa + paper) */
-  --bg: #f4ead4;
-  --bg-raised: #f9f1db;
-  --surface: #fbf5e3;
-  --surface-2: #f0e2c0;
-  --surface-3: #e6d2a7;
+  /* Armenian tuf — rose/salmon volcanic stone (Yerevan facades) */
+  --bg: #ecc9b0;
+  --bg-raised: #f3d6bd;
+  --surface: #f7e0c9;
+  --surface-2: #e8bd9f;
+  --surface-3: #d9a988;
+  --tuf-veined: #e1b598;
 
   /* Burgundy / бордовый — deep Armenian wine tone */
   --pom-deep: #3d0a14;
