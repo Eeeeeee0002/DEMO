@@ -208,18 +208,6 @@ export function ScrollDecor() {
           </g>
         </g>
 
-        {/* Струя вина из бутылки в бокал — появляется во время наклона */}
-        <path
-          className="tb-pour"
-          d="M 160 74
-             Q 158 118, 154 148
-             Q 152 170, 150 184"
-          stroke="rgba(130, 18, 36, 0.95)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          fill="none"
-          pathLength="100"
-        />
         {/* Капельки, отскакивающие в бокале */}
         <g className="tb-splash">
           <circle cx="148" cy="190" r="1.6" fill="rgba(130, 18, 36, 0.9)" />
