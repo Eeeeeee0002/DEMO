@@ -118,6 +118,11 @@ export function ScrollDecor() {
             <stop offset="0%"  stopColor="rgba(240, 228, 204, 0.92)" />
             <stop offset="100%" stopColor="rgba(175, 158, 120, 0.92)" />
           </linearGradient>
+          <radialGradient id="tb-tomato" cx="35%" cy="35%" r="70%">
+            <stop offset="0%"  stopColor="rgba(245, 110, 90, 0.98)" />
+            <stop offset="55%" stopColor="rgba(200, 38, 38, 0.98)" />
+            <stop offset="100%" stopColor="rgba(125, 20, 24, 0.98)" />
+          </radialGradient>
         </defs>
 
         {/* Тёплая окружающая подсветка */}
@@ -375,6 +380,71 @@ export function ScrollDecor() {
           <path className="tb-dsteam-3"
             d="M144 340 C 142 322, 148 314, 144 292 C 142 272, 148 258, 146 246"
             stroke="rgba(95, 17, 36, 0.16)" strokeWidth="4" fill="none" strokeLinecap="round" />
+        </g>
+
+        {/* Миска с помидорами — справа-спереди, рядом с бастурмой */}
+        <g className="tb-tomatoes">
+          {/* Тень миски */}
+          <ellipse cx="310" cy="362" rx="42" ry="5" fill="rgba(30, 10, 6, 0.32)" />
+          {/* Плетёная миска */}
+          <ellipse cx="310" cy="354" rx="40" ry="8" fill="url(#tb-plate)" stroke="rgba(120, 90, 50, 0.7)" strokeWidth="0.8" />
+          {/* Плетение — горизонтальные штрихи */}
+          <g stroke="rgba(95, 62, 28, 0.5)" strokeWidth="0.4" fill="none">
+            <path d="M274 352 Q 310 354, 346 352" />
+            <path d="M276 355 Q 310 357, 344 355" />
+            <path d="M278 358 Q 310 360, 342 358" />
+          </g>
+          {/* Бортик миски */}
+          <ellipse cx="310" cy="350" rx="34" ry="5.5" fill="rgba(255, 244, 216, 0.35)" stroke="rgba(130, 105, 65, 0.4)" strokeWidth="0.4" />
+
+          {/* Помидоры — 4 круглых с зелёными хвостиками */}
+          <g className="tb-tomato-bunch">
+            {/* Помидор 1 */}
+            <g transform="translate(288, 344)">
+              <circle cx="0" cy="0" r="10" fill="url(#tb-tomato)" />
+              {/* Блик */}
+              <ellipse cx="-3.5" cy="-3.5" rx="3" ry="2" fill="rgba(255, 220, 200, 0.55)" />
+              {/* Зелёный хвостик */}
+              <g transform="translate(0, -9)">
+                <path d="M-3 0 L 0 -3 L 3 0 L 1.5 1 L 2 -1 L -2 -1 L -1.5 1 Z" fill="rgba(85, 130, 50, 0.95)" />
+                <line x1="0" y1="-3" x2="0" y2="-5" stroke="rgba(60, 95, 35, 0.95)" strokeWidth="0.8" strokeLinecap="round" />
+              </g>
+            </g>
+            {/* Помидор 2 — сзади */}
+            <g transform="translate(308, 340)">
+              <circle cx="0" cy="0" r="11" fill="url(#tb-tomato)" />
+              <ellipse cx="-4" cy="-4" rx="3.2" ry="2.2" fill="rgba(255, 220, 200, 0.55)" />
+              <g transform="translate(0, -10)">
+                <path d="M-3.2 0 L 0 -3.2 L 3.2 0 L 1.6 1 L 2.1 -1 L -2.1 -1 L -1.6 1 Z" fill="rgba(85, 130, 50, 0.95)" />
+                <line x1="0" y1="-3.2" x2="0" y2="-5.2" stroke="rgba(60, 95, 35, 0.95)" strokeWidth="0.8" strokeLinecap="round" />
+              </g>
+            </g>
+            {/* Помидор 3 */}
+            <g transform="translate(328, 344)">
+              <circle cx="0" cy="0" r="10" fill="url(#tb-tomato)" />
+              <ellipse cx="-3.5" cy="-3.5" rx="3" ry="2" fill="rgba(255, 220, 200, 0.55)" />
+              <g transform="translate(0, -9) rotate(15)">
+                <path d="M-3 0 L 0 -3 L 3 0 L 1.5 1 L 2 -1 L -2 -1 L -1.5 1 Z" fill="rgba(85, 130, 50, 0.95)" />
+                <line x1="0" y1="-3" x2="0" y2="-5" stroke="rgba(60, 95, 35, 0.95)" strokeWidth="0.8" strokeLinecap="round" />
+              </g>
+            </g>
+            {/* Помидор 4 — спереди небольшой */}
+            <g transform="translate(298, 354)">
+              <circle cx="0" cy="0" r="8" fill="url(#tb-tomato)" />
+              <ellipse cx="-2.8" cy="-2.8" rx="2.4" ry="1.6" fill="rgba(255, 220, 200, 0.55)" />
+              <g transform="translate(0, -7.5) rotate(-10)">
+                <path d="M-2.4 0 L 0 -2.4 L 2.4 0 L 1.2 0.8 L 1.6 -0.8 L -1.6 -0.8 L -1.2 0.8 Z" fill="rgba(85, 130, 50, 0.95)" />
+              </g>
+            </g>
+            {/* Помидор 5 — спереди справа маленький */}
+            <g transform="translate(320, 356)">
+              <circle cx="0" cy="0" r="7.5" fill="url(#tb-tomato)" />
+              <ellipse cx="-2.6" cy="-2.6" rx="2.2" ry="1.5" fill="rgba(255, 220, 200, 0.55)" />
+              <g transform="translate(0, -7) rotate(20)">
+                <path d="M-2.4 0 L 0 -2.4 L 2.4 0 L 1.2 0.8 L 1.6 -0.8 L -1.6 -0.8 L -1.2 0.8 Z" fill="rgba(85, 130, 50, 0.95)" />
+              </g>
+            </g>
+          </g>
         </g>
 
         {/* Свечка-акцент по центру стола (не обязательна, но тёплая точка) */}

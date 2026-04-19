@@ -41,6 +41,16 @@
   100% { opacity: 0; transform: translateY(-34px); }
 }
 
+/* Помидоры — миска чуть покачивается, блики переливаются */
+.sd-shape--table .tb-tomatoes {
+  transform-origin: 310px 354px;
+  animation: tb-tomatoes-sway 6.5s ease-in-out infinite;
+}
+@keyframes tb-tomatoes-sway {
+  0%, 100% { transform: translateY(0) rotate(-0.3deg); }
+  50%      { transform: translateY(-0.8px) rotate(0.4deg); }
+}
+
 /* Долма — тарелка слегка «дышит» от тепла */
 .sd-shape--table .tb-dolma {
   transform-origin: 125px 352px;
@@ -180,6 +190,7 @@
   .sd-shape--table .tb-mug,
   .sd-shape--table .tb-dolma,
   .sd-shape--table .tb-dsteam path,
+  .sd-shape--table .tb-tomatoes,
   .sd-shape--table .tb-board,
   .sd-shape--table .tb-bottle,
   .sd-shape--table .tb-pour,
