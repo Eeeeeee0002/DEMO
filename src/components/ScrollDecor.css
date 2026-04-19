@@ -41,6 +41,26 @@
   100% { opacity: 0; transform: translateY(-34px); }
 }
 
+/* Долма — тарелка слегка «дышит» от тепла */
+.sd-shape--table .tb-dolma {
+  transform-origin: 125px 352px;
+  animation: tb-dolma-breathe 5s ease-in-out infinite;
+}
+@keyframes tb-dolma-breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-0.6px) scale(1.008); }
+}
+
+/* Пар над долмой — синхронно поднимается */
+.sd-shape--table .tb-dsteam path {
+  stroke-dasharray: 6 10;
+  opacity: 0;
+  animation: tb-steam-rise 5.4s ease-out infinite;
+}
+.sd-shape--table .tb-dsteam-1 { animation-delay: 0.6s; }
+.sd-shape--table .tb-dsteam-2 { animation-delay: 2.2s; }
+.sd-shape--table .tb-dsteam-3 { animation-delay: 3.8s; }
+
 /* Тёплое окружение — мягко пульсирует */
 .sd-shape--table .tb-ambient {
   transform-origin: 50% 55%;
@@ -158,6 +178,8 @@
   .sd-shape--table .tb-lavash,
   .sd-shape--table .tb-cheese,
   .sd-shape--table .tb-mug,
+  .sd-shape--table .tb-dolma,
+  .sd-shape--table .tb-dsteam path,
   .sd-shape--table .tb-board,
   .sd-shape--table .tb-bottle,
   .sd-shape--table .tb-pour,

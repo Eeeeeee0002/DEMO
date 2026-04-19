@@ -109,6 +109,15 @@ export function ScrollDecor() {
             <stop offset="70%" stopColor="rgba(95, 17, 36, 0.95)" />
             <stop offset="100%" stopColor="rgba(50, 10, 18, 0.98)" />
           </radialGradient>
+          <linearGradient id="tb-dolma" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(135, 150, 78, 0.98)" />
+            <stop offset="60%" stopColor="rgba(92, 110, 52, 0.98)" />
+            <stop offset="100%" stopColor="rgba(58, 72, 32, 0.98)" />
+          </linearGradient>
+          <linearGradient id="tb-plate" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(240, 228, 204, 0.92)" />
+            <stop offset="100%" stopColor="rgba(175, 158, 120, 0.92)" />
+          </linearGradient>
         </defs>
 
         {/* Тёплая окружающая подсветка */}
@@ -315,6 +324,57 @@ export function ScrollDecor() {
           <path className="tb-steam-3"
             d="M366 244 C 364 228, 370 222, 366 202 C 364 184, 370 174, 368 162"
             stroke="rgba(95, 17, 36, 0.14)" strokeWidth="4" fill="none" strokeLinecap="round" />
+        </g>
+
+        {/* Тарелка с долмой — спереди слева, с поднимающимся паром */}
+        <g className="tb-dolma">
+          {/* Тень тарелки */}
+          <ellipse cx="125" cy="362" rx="46" ry="5" fill="rgba(30, 10, 6, 0.32)" />
+          {/* Тарелка глубокая */}
+          <ellipse cx="125" cy="352" rx="44" ry="8" fill="url(#tb-plate)" stroke="rgba(120, 95, 55, 0.55)" strokeWidth="0.6" />
+          {/* Бортик тарелки */}
+          <ellipse cx="125" cy="348" rx="38" ry="6" fill="rgba(255, 244, 216, 0.35)" stroke="rgba(130, 105, 65, 0.4)" strokeWidth="0.4" />
+          {/* Долмушки — голубцы в 2 ряда */}
+          <g>
+            <g transform="translate(100, 346) rotate(-5)">
+              <ellipse cx="0" cy="0" rx="11" ry="4.2" fill="url(#tb-dolma)" />
+              <path d="M-9 -2 Q -4 -3.7, 0 -2.6 Q 4 -3.7, 9 -2" stroke="rgba(40, 55, 22, 0.7)" strokeWidth="0.5" fill="none" />
+              <path d="M-7 0.5 Q 0 1.2, 7 0.5" stroke="rgba(30, 42, 18, 0.55)" strokeWidth="0.35" fill="none" />
+            </g>
+            <g transform="translate(124, 344) rotate(3)">
+              <ellipse cx="0" cy="0" rx="11" ry="4.2" fill="url(#tb-dolma)" />
+              <path d="M-9 -2 Q -4 -3.7, 0 -2.6 Q 4 -3.7, 9 -2" stroke="rgba(40, 55, 22, 0.7)" strokeWidth="0.5" fill="none" />
+              <path d="M-7 0.5 Q 0 1.2, 7 0.5" stroke="rgba(30, 42, 18, 0.55)" strokeWidth="0.35" fill="none" />
+            </g>
+            <g transform="translate(148, 346) rotate(-3)">
+              <ellipse cx="0" cy="0" rx="11" ry="4.2" fill="url(#tb-dolma)" />
+              <path d="M-9 -2 Q -4 -3.7, 0 -2.6 Q 4 -3.7, 9 -2" stroke="rgba(40, 55, 22, 0.7)" strokeWidth="0.5" fill="none" />
+              <path d="M-7 0.5 Q 0 1.2, 7 0.5" stroke="rgba(30, 42, 18, 0.55)" strokeWidth="0.35" fill="none" />
+            </g>
+            <g transform="translate(112, 353) rotate(6)">
+              <ellipse cx="0" cy="0" rx="11" ry="4.2" fill="url(#tb-dolma)" />
+              <path d="M-9 -2 Q -4 -3.7, 0 -2.6 Q 4 -3.7, 9 -2" stroke="rgba(40, 55, 22, 0.7)" strokeWidth="0.5" fill="none" />
+              <path d="M-7 0.5 Q 0 1.2, 7 0.5" stroke="rgba(30, 42, 18, 0.55)" strokeWidth="0.35" fill="none" />
+            </g>
+            <g transform="translate(138, 353) rotate(-4)">
+              <ellipse cx="0" cy="0" rx="11" ry="4.2" fill="url(#tb-dolma)" />
+              <path d="M-9 -2 Q -4 -3.7, 0 -2.6 Q 4 -3.7, 9 -2" stroke="rgba(40, 55, 22, 0.7)" strokeWidth="0.5" fill="none" />
+              <path d="M-7 0.5 Q 0 1.2, 7 0.5" stroke="rgba(30, 42, 18, 0.55)" strokeWidth="0.35" fill="none" />
+            </g>
+          </g>
+        </g>
+
+        {/* Пар над долмой */}
+        <g className="tb-dsteam">
+          <path className="tb-dsteam-1"
+            d="M108 340 C 106 322, 114 314, 112 292 C 110 272, 116 258, 114 238"
+            stroke="rgba(95, 17, 36, 0.24)" strokeWidth="5" fill="none" strokeLinecap="round" />
+          <path className="tb-dsteam-2"
+            d="M126 338 C 130 322, 122 314, 128 292 C 132 272, 124 258, 128 238"
+            stroke="rgba(95, 17, 36, 0.2)" strokeWidth="4.5" fill="none" strokeLinecap="round" />
+          <path className="tb-dsteam-3"
+            d="M144 340 C 142 322, 148 314, 144 292 C 142 272, 148 258, 146 246"
+            stroke="rgba(95, 17, 36, 0.16)" strokeWidth="4" fill="none" strokeLinecap="round" />
         </g>
 
         {/* Свечка-акцент по центру стола (не обязательна, но тёплая точка) */}
