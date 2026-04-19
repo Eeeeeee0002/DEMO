@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { FlyingPomegranates } from './FlyingPomegranates';
 import './Hero.css';
 
 export function Hero() {
@@ -25,6 +26,7 @@ export function Hero() {
 
   return (
     <section className="hero" id="top">
+      <FlyingPomegranates count={34} />
       <div className="container hero__wrap">
         <div className="hero__content">
           <span className="hero__eyebrow" data-reveal data-reveal-variant="left">
