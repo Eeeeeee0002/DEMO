@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Logo } from './Logo';
 import './Hero.css';
 
 export function Hero() {
@@ -89,9 +88,6 @@ export function Hero() {
 
         <div className="hero__visual" aria-hidden data-reveal data-reveal-variant="zoom" data-reveal-delay="120">
           <div className="hero__halo" />
-          <div className="hero__mark">
-            <Logo size={160} />
-          </div>
           <span className="hero__arm" aria-hidden>
             Արմ Մարկետ
           </span>

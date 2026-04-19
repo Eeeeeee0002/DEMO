@@ -9,6 +9,7 @@ import { Cart } from './components/Cart';
 import { Footer } from './components/Footer';
 import { StickyCartBar } from './components/StickyCartBar';
 import { ScrollDecor } from './components/ScrollDecor';
+import { FlyingPomegranates } from './components/FlyingPomegranates';
 import { OrnamentDivider } from './components/OrnamentDivider';
 import { useReveal } from './hooks/useReveal';
 
@@ -19,6 +20,7 @@ function App() {
   return (
     <CartProvider>
       <ScrollDecor />
+      <FlyingPomegranates count={18} />
       <Header onOpenCart={() => setCartOpen(true)} />
       <main>
         <Hero />
