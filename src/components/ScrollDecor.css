@@ -66,12 +66,12 @@
   animation: tb-wine-fill 7s cubic-bezier(0.45, 0.05, 0.55, 1) infinite;
 }
 @keyframes tb-wine-fill {
-  0%       { transform: scaleY(0.15) rotate(-1deg); }
-  22%      { transform: scaleY(0.18) rotate(1deg); }
-  30%      { transform: scaleY(0.25) rotate(-0.5deg); }
+  0%       { transform: scaleY(0.42) rotate(-1deg); }
+  22%      { transform: scaleY(0.45) rotate(1deg); }
+  30%      { transform: scaleY(0.5)  rotate(-0.5deg); }
   66%      { transform: scaleY(1)    rotate(1.2deg); }
   78%      { transform: scaleY(1)    rotate(-0.8deg); }
-  100%     { transform: scaleY(0.15) rotate(-1deg); }
+  100%     { transform: scaleY(0.42) rotate(-1deg); }
 }
 
 /* Лаваш — чуть «дышит», как будто тёплый */
