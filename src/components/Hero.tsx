@@ -29,9 +29,6 @@ export function Hero() {
       <FlyingPomegranates count={34} />
       <div className="container hero__wrap">
         <div className="hero__content">
-          <span className="hero__eyebrow" data-reveal data-reveal-variant="left">
-            <span className="hero__dot" /> Մեր սեղանը — ձեր սեղանն է · Наш стол — ваш стол
-          </span>
           <h1 className="hero__title" data-reveal data-reveal-variant="left" data-reveal-delay="80">
             Вкус Армении — <em>к вашему столу</em>
           </h1>
