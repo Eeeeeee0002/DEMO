@@ -1,0 +1,96 @@
+.catalog {
+  padding: 32px 0 56px;
+  background: var(--bg);
+}
+
+.catalog__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding-top: 4px;
+}
+.catalog__heading h2 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.2vw, 32px);
+  font-weight: 600;
+  margin: 0;
+  color: var(--bone);
+  letter-spacing: -0.01em;
+}
+.catalog__heading-arm {
+  font-family: var(--serif-arm);
+  font-style: normal;
+  color: var(--brass);
+  font-weight: 500;
+  font-size: 0.7em;
+}
+.catalog__heading-count {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.catalog__query {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(138, 106, 52, 0.08);
+  border-radius: 999px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--bone-soft);
+}
+.catalog__query-reset {
+  border: 0;
+  background: transparent;
+  color: var(--pom);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  padding: 0;
+}
+.catalog__query-reset:hover {
+  text-decoration: underline;
+}
+
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+/* Reveal wrapper must render a real box (not display:contents) so that
+   opacity/transform from [data-reveal] actually animate. Fill the grid cell. */
+.pcard-reveal {
+  display: flex;
+  min-width: 0;
+}
+.pcard-reveal > .pcard {
+  flex: 1;
+  min-width: 0;
+}
+
+.catalog__empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+}
+.catalog__empty p {
+  margin: 0 0 14px;
+  font-size: 16px;
+}
+
+@media (max-width: 520px) {
+  .catalog {
+    padding: 20px 0 100px; /* extra bottom for sticky cart bar */
+  }
+  .catalog__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}

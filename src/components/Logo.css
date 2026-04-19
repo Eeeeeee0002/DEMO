@@ -1,0 +1,59 @@
+/* Живописный гранат — картинка с прозрачным фоном, без рамки */
+.armlogo-pom {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  transform-origin: 50% 90%;
+  filter: drop-shadow(0 6px 12px rgba(60, 20, 10, 0.28))
+          drop-shadow(0 2px 4px rgba(60, 20, 10, 0.18));
+}
+
+.armlogo-pom > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.armlogo-pom--animated {
+  animation: armlogoPomFloat 6.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.armlogo-pom--animated::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6%;
+  width: 70%;
+  height: 8%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(40, 10, 6, 0.35) 0%, rgba(40, 10, 6, 0) 70%);
+  animation: armlogoPomShadow 6.4s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes armlogoPomFloat {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50%      { transform: translateY(-4px) rotate(1.5deg); }
+}
+
+@keyframes armlogoPomShadow {
+  0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 0.6; }
+  50%      { transform: translateX(-50%) scaleX(0.8); opacity: 0.3; }
+}
+
+.armlogo-pom--animated:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .armlogo-pom--animated,
+  .armlogo-pom--animated::after {
+    animation: none;
+  }
+}

@@ -1,0 +1,44 @@
+.fly-poms {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.fly-poms__item {
+  position: absolute;
+  will-change: transform, opacity;
+  animation-name: fly-poms-float, fly-poms-spin;
+  animation-timing-function: ease-in-out, linear;
+  animation-iteration-count: infinite, infinite;
+  animation-direction: alternate, normal;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@keyframes fly-poms-float {
+  0%   { transform: translate3d(0, 0, 0); }
+  25%  { transform: translate3d(calc(var(--fly-drift) * 0.6), -28px, 0); }
+  50%  { transform: translate3d(var(--fly-drift), -14px, 0); }
+  75%  { transform: translate3d(calc(var(--fly-drift) * 0.4), 22px, 0); }
+  100% { transform: translate3d(calc(var(--fly-drift) * -0.2), 6px, 0); }
+}
+
+@keyframes fly-poms-spin {
+  0%   { rotate: calc(var(--fly-rot) * -1); }
+  100% { rotate: var(--fly-rot); }
+}
+
+@media (max-width: 760px) {
+  .fly-poms__item {
+    /* чуть уменьшаем плотность на мобильных, делая их прозрачнее */
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fly-poms__item {
+    animation: none;
+  }
+}
