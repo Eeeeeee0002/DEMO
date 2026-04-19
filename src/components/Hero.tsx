@@ -30,15 +30,15 @@ export function Hero() {
       <div className="container hero__wrap">
         <div className="hero__content">
           <span className="hero__eyebrow" data-reveal data-reveal-variant="left">
-            <span className="hero__dot" /> Доставка из Еревана за 90 минут
+            <span className="hero__dot" /> Մեր սեղանը — ձեր սեղանն է · Наш стол — ваш стол
           </span>
           <h1 className="hero__title" data-reveal data-reveal-variant="left" data-reveal-delay="80">
-            Армянские продукты — <em>к вашему столу</em>
+            Вкус Армении — <em>к вашему столу</em>
           </h1>
           <p className="hero__lead" data-reveal data-reveal-variant="left" data-reveal-delay="180">
-            Тёплый лаваш из тандыра, выдержанная бастурма, нежные сыры
-            и сладости с орехами в мёде. Весь вкус армянского стола — с бережной
-            доставкой в термосумке.
+            Тёплый лаваш, только что вынутый из тандыра. Выдержанная бастурма
+            с ароматом горного чамана. Нежные сыры и сладости с грецким
+            орехом в мёде. Собрано бережно, привезено тёплым.
           </p>
 
           <form className="hero__search" onSubmit={onSubmit} role="search" data-reveal data-reveal-delay="260">
