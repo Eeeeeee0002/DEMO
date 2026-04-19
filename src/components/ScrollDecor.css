@@ -100,6 +100,42 @@
   50%      { transform: translateY(-1.5px); }
 }
 
+/* Нож режет сыр — чоппер движется вверх-вниз, синхронно появляется отрезанный ломтик */
+.sd-shape--table .tb-knife {
+  transform-origin: 318px 216px;
+  animation: tb-knife-chop 2.8s cubic-bezier(0.55, 0, 0.45, 1) infinite;
+}
+@keyframes tb-knife-chop {
+  0%   { transform: translateY(-18px) rotate(-2deg); }
+  35%  { transform: translateY(-18px) rotate(-2deg); }
+  55%  { transform: translateY(10px)  rotate(1deg); }
+  62%  { transform: translateY(10px)  rotate(1deg); }
+  100% { transform: translateY(-18px) rotate(-2deg); }
+}
+
+/* Отрезанный ломтик сыра — сползает вправо, когда нож внизу */
+.sd-shape--table .tb-cheese-slice {
+  transform-origin: 260px 298px;
+  opacity: 0;
+  animation: tb-cheese-slice 2.8s cubic-bezier(0.55, 0, 0.45, 1) infinite;
+}
+@keyframes tb-cheese-slice {
+  0%, 50%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  60%       { transform: translate(-2px, 0) rotate(-4deg); opacity: 1; }
+  85%       { transform: translate(-16px, 6px) rotate(-14deg); opacity: 0.9; }
+  100%      { transform: translate(-24px, 12px) rotate(-18deg); opacity: 0; }
+}
+
+/* Доска с бастурмой — тихо покачивается */
+.sd-shape--table .tb-board {
+  transform-origin: 240px 322px;
+  animation: tb-board-breathe 6s ease-in-out infinite;
+}
+@keyframes tb-board-breathe {
+  0%, 100% { transform: translateY(0) rotate(-0.2deg); }
+  50%      { transform: translateY(-1px) rotate(0.3deg); }
+}
+
 /* Пламя свечи — трепещет */
 .sd-shape--table .tb-flame-sm {
   transform-origin: 210px 304px;
@@ -118,6 +154,12 @@
   .sd-shape--table .tb-lavash,
   .sd-shape--table .tb-cheese,
   .sd-shape--table .tb-mug,
+  .sd-shape--table .tb-knife,
+  .sd-shape--table .tb-cheese-slice,
+  .sd-shape--table .tb-board,
+  .sd-shape--table .tb-bottle,
+  .sd-shape--table .tb-pour,
+  .sd-shape--table .tb-splash circle,
   .sd-shape--table .tb-flame-sm {
     animation: none;
   }

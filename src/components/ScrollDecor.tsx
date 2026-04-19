@@ -91,6 +91,24 @@ export function ScrollDecor() {
             <stop offset="0%" stopColor="rgba(240, 186, 95, 0.22)" />
             <stop offset="100%" stopColor="rgba(240, 186, 95, 0)" />
           </radialGradient>
+          <linearGradient id="tb-blade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(240, 238, 232, 0.95)" />
+            <stop offset="50%" stopColor="rgba(195, 195, 190, 0.95)" />
+            <stop offset="100%" stopColor="rgba(135, 135, 130, 0.95)" />
+          </linearGradient>
+          <linearGradient id="tb-handle" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(110, 62, 28, 0.95)" />
+            <stop offset="100%" stopColor="rgba(58, 28, 10, 0.98)" />
+          </linearGradient>
+          <linearGradient id="tb-board" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stopColor="rgba(135, 85, 45, 0.85)" />
+            <stop offset="100%" stopColor="rgba(82, 46, 20, 0.95)" />
+          </linearGradient>
+          <radialGradient id="tb-meat" cx="50%" cy="45%" r="60%">
+            <stop offset="0%"  stopColor="rgba(150, 30, 30, 0.95)" />
+            <stop offset="70%" stopColor="rgba(95, 17, 36, 0.95)" />
+            <stop offset="100%" stopColor="rgba(50, 10, 18, 0.98)" />
+          </radialGradient>
         </defs>
 
         {/* Тёплая окружающая подсветка */}
@@ -136,6 +154,42 @@ export function ScrollDecor() {
           </g>
         </g>
 
+        {/* Доска с бастурмой — справа-внизу перед кружкой */}
+        <g className="tb-board">
+          {/* Тень доски */}
+          <ellipse cx="240" cy="332" rx="68" ry="6" fill="rgba(30, 10, 6, 0.3)" />
+          {/* Деревянная разделочная доска */}
+          <ellipse cx="240" cy="322" rx="64" ry="11" fill="url(#tb-board)" />
+          {/* Жилки дерева */}
+          <g stroke="rgba(40, 20, 8, 0.35)" strokeWidth="0.5" fill="none">
+            <path d="M184 322 Q 210 320, 236 322 Q 266 324, 296 322" />
+            <path d="M190 326 Q 220 324, 250 326 Q 280 328, 294 326" />
+          </g>
+          {/* Ломтики бастурмы — плоские сыровяленые кружки со светлой оторочкой чамана */}
+          <g className="tb-meat">
+            <g transform="translate(198, 318) rotate(-6)">
+              <ellipse cx="0" cy="0" rx="14" ry="6.5" fill="rgba(150, 100, 40, 0.95)" />
+              <ellipse cx="0" cy="0" rx="11" ry="5" fill="url(#tb-meat)" />
+              <path d="M-6 -2 Q 0 -4, 6 -2" stroke="rgba(255, 240, 200, 0.25)" strokeWidth="0.5" fill="none" />
+            </g>
+            <g transform="translate(224, 316) rotate(4)">
+              <ellipse cx="0" cy="0" rx="14" ry="6.5" fill="rgba(150, 100, 40, 0.95)" />
+              <ellipse cx="0" cy="0" rx="11" ry="5" fill="url(#tb-meat)" />
+              <path d="M-6 -2 Q 0 -4, 6 -2" stroke="rgba(255, 240, 200, 0.25)" strokeWidth="0.5" fill="none" />
+            </g>
+            <g transform="translate(252, 318) rotate(-2)">
+              <ellipse cx="0" cy="0" rx="14" ry="6.5" fill="rgba(150, 100, 40, 0.95)" />
+              <ellipse cx="0" cy="0" rx="11" ry="5" fill="url(#tb-meat)" />
+              <path d="M-6 -2 Q 0 -4, 6 -2" stroke="rgba(255, 240, 200, 0.25)" strokeWidth="0.5" fill="none" />
+            </g>
+            <g transform="translate(278, 316) rotate(5)">
+              <ellipse cx="0" cy="0" rx="14" ry="6.5" fill="rgba(150, 100, 40, 0.95)" />
+              <ellipse cx="0" cy="0" rx="11" ry="5" fill="url(#tb-meat)" />
+              <path d="M-6 -2 Q 0 -4, 6 -2" stroke="rgba(255, 240, 200, 0.25)" strokeWidth="0.5" fill="none" />
+            </g>
+          </g>
+        </g>
+
         {/* Клин сыра — справа по центру */}
         <g className="tb-cheese">
           <path
@@ -152,6 +206,53 @@ export function ScrollDecor() {
             <circle cx="260" cy="288" r="2" />
             <circle cx="298" cy="288" r="2.8" />
           </g>
+          {/* Отрезанный ломтик сыра — появляется, когда нож «режет» */}
+          <g className="tb-cheese-slice">
+            <path
+              d="M250 298 L270 298 L262 286 L256 286 Z"
+              fill="rgba(235, 198, 108, 0.95)"
+              stroke="rgba(170, 120, 40, 0.7)"
+              strokeWidth="0.4" />
+          </g>
+        </g>
+
+        {/* Нож — чоппит сыр сверху */}
+        <g className="tb-knife">
+          {/* Лезвие — серебристый клин, остриё слева */}
+          <path
+            d="M208 208 L298 210 L300 222 L208 220 Z"
+            fill="url(#tb-blade)"
+            stroke="rgba(80, 80, 78, 0.7)"
+            strokeWidth="0.5" />
+          {/* Заточка — тонкая светлая линия */}
+          <line x1="210" y1="219" x2="298" y2="220" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="0.6" />
+          {/* Обух — верхняя грань */}
+          <line x1="210" y1="210" x2="298" y2="211" stroke="rgba(90, 90, 88, 0.8)" strokeWidth="0.7" />
+          {/* Рукоять */}
+          <rect x="298" y="205" width="40" height="22" rx="3" fill="url(#tb-handle)" />
+          {/* Заклёпки на рукояти */}
+          <circle cx="306" cy="216" r="1.4" fill="rgba(200, 170, 110, 0.95)" />
+          <circle cx="320" cy="216" r="1.4" fill="rgba(200, 170, 110, 0.95)" />
+          <circle cx="334" cy="216" r="1.4" fill="rgba(200, 170, 110, 0.95)" />
+        </g>
+
+        {/* Струя вина из бутылки в бокал — появляется во время наклона */}
+        <path
+          className="tb-pour"
+          d="M 160 74
+             Q 158 118, 154 148
+             Q 152 170, 150 184"
+          stroke="rgba(130, 18, 36, 0.95)"
+          strokeWidth="3"
+          strokeLinecap="round"
+          fill="none"
+          pathLength="100"
+        />
+        {/* Капельки, отскакивающие в бокале */}
+        <g className="tb-splash">
+          <circle cx="148" cy="190" r="1.6" fill="rgba(130, 18, 36, 0.9)" />
+          <circle cx="155" cy="188" r="1.1" fill="rgba(130, 18, 36, 0.8)" />
+          <circle cx="143" cy="192" r="1" fill="rgba(130, 18, 36, 0.8)" />
         </g>
 
         {/* Бутылка вина — слева */}
